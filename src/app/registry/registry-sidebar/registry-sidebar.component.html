@@ -1,0 +1,79 @@
+<ul class="nav flex-column gap-1 p-2">
+  <li class="nav-item user" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/dashboard/registry-dashboard">
+    <fa-icon [icon]="faDashboard"></fa-icon>
+    <a class="nav-link" aria-current="page">Dashboard</a>
+  </li>
+  <li class="nav-item user" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/dashboard/user-profile">
+    <fa-icon [icon]="faCircleUser"></fa-icon>
+    <a class="nav-link" aria-current="page">{{ userName }}</a>
+  </li>
+  <li class="nav-item user" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/dashboard/track-memo">
+    <fa-icon [icon]="faMapLocationDot"></fa-icon>
+    <a class="nav-link" aria-current="page">Track memo</a>
+  </li>
+  <li class="nav-item files" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/dashboard/manage-files">
+    <fa-icon [icon]="faFolderPlus"></fa-icon>
+    <a class="nav-link">Manage files</a>
+  </li>
+  <li class="nav-item memos" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/dashboard/manage-users">
+    <fa-icon [icon]="faUsers"></fa-icon>
+    <a class="nav-link">Manage users</a>
+  </li>
+  <li class="nav-item analytics" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/dashboard">
+    <fa-icon [icon]="faChartSimple"></fa-icon>
+    <a class="nav-link">Analytics</a>
+  </li>
+</ul>
+
+
+<div class="container p-2">
+  <h3>Recent activities</h3>
+  <div class="activity">
+    <div class="activity-icon">
+      <fa-icon [icon]="faClock"></fa-icon>
+    </div>
+    <div class="activity-content">
+      <p>Sent memo to chief accountant.</p>
+      <p class="time">5 minutes ago</p>
+    </div>
+  </div>
+  <div class="activity">
+    <div class="activity-icon">
+      <fa-icon [icon]="faClock"></fa-icon>
+    </div>
+    <div class="activity-content">
+      <p>Sent memo to chief accountant.</p>
+      <p class="time">5 minutes ago</p>
+    </div>
+  </div>
+  <div class="activity">
+    <div class="activity-icon">
+      <fa-icon [icon]="faClock"></fa-icon>
+    </div>
+    <div class="activity-content">
+      <p>Sent memo to chief accountant.</p>
+      <p class="time">5 minutes ago</p>
+    </div>
+  </div>
+  <div class="activity">
+    <div class="activity-icon">
+      <fa-icon [icon]="faClock"></fa-icon>
+    </div>
+    <div class="activity-content">
+      <p>Sent memo to chief accountant.</p>
+      <p class="time">5 minutes ago</p>
+    </div>
+  </div>
+</div>

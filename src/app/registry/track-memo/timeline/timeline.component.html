@@ -1,0 +1,14 @@
+<div class="timeline-container">
+  <div class="timeline">
+    <h3>Memo title</h3>
+    <div class="timeline-item" *ngFor="let event of events">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>{{ event.action }}</h3>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p>{{ event.description }}</p>
+        <p><strong>Department:</strong> {{ event.department }}</p>
+      </div>
+    </div>
+  </div>
+</div>

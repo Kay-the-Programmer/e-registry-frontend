@@ -1,0 +1,113 @@
+<!-- Loading Spinner Section -->
+<div *ngIf="isLoading" class="loading-container">
+  <mat-spinner></mat-spinner>
+  <p>Loading file details...</p>
+</div>
+
+<!-- File Details Section -->
+<div *ngIf="!isLoading && file">
+  <mat-card class="file-details-card">
+<!--    <h1>File Details</h1>-->
+    <div class="d-flex ft flex-row w-100">
+      <div class="w-100 st flex-grow-1">
+        <div class="xt ft">
+          <mat-card-title >File details</mat-card-title>
+        </div>
+        <div class="xt">
+          <p><strong>File ID:</strong> {{ file.fileID }}</p>
+          <p><strong>File Name:</strong> {{ file.fileName }}</p>
+          <p><strong>Subject:</strong> {{ file.fileSubject }}</p>
+          <p><strong>Department:</strong> {{ file.fileDepartment }}</p>
+          <p><strong>Last Used:</strong> {{ file.lastUsed }}</p>
+          <p><strong>Memos:</strong> {{ file.numberOfMemos }}</p>
+          <p><strong>Active:</strong> {{ file.isActive ? 'Yes' : 'No' }}</p>
+        </div>
+      </div>
+      <div class="d-flex xt align-content-center justify-content-center">
+        <!-- Active Memos Card -->
+        <mat-card class="dashboard-card d-flex align-content-center align-items-center justify-content-center">
+          <mat-card-title class="mb-2">File statistics</mat-card-title>
+          <ngx-charts-pie-chart
+            [results]="activeMemos"
+            [view]="[300, 200]"
+            scheme="forest"
+            [legend]="false"
+            [labels]="true">
+          </ngx-charts-pie-chart>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Memo List Section -->
+    <h2>Memos</h2>
+    <!-- Memo List Section -->
+    <div *ngIf="file.memos.length > 0">
+      <table mat-table [dataSource]="file.memos" class="memo-table">
+        <!-- Memo ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Memo ID </th>
+          <td
+            mat-cell
+            *matCellDef="let memo"
+            (click)="navigateToMemo(memo.id)"
+            class="clickable-row"
+          >
+            {{ memo.id }}
+          </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef> Title </th>
+          <td
+            mat-cell
+            *matCellDef="let memo"
+            (click)="navigateToMemo(memo.id)"
+            class="clickable-row"
+          >
+            {{ memo.title }}
+          </td>
+        </ng-container>
+
+        <!-- Content Column -->
+        <ng-container matColumnDef="content">
+          <th mat-header-cell *matHeaderCellDef> Content </th>
+          <td
+            mat-cell
+            *matCellDef="let memo"
+            (click)="navigateToMemo(memo.id)"
+            class="clickable-row"
+          >
+            {{ memo.content }}
+          </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td
+            mat-cell
+            *matCellDef="let memo"
+            (click)="navigateToMemo(memo.id)"
+            class="clickable-row"
+          >
+            {{ memo.date }}
+          </td>
+        </ng-container>
+
+        <!-- Table Header and Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.odd-row]="isOddRow(row)"></tr>
+      </table>
+    </div>
+
+
+
+    <div *ngIf="file.memos.length === 0">
+      <p>No memos available for this file.</p>
+    </div>
+  </mat-card>
+</div>
+<div *ngIf="!isLoading && !file" class="justify-content-center p-5 m-5">
+  <fa-icon [icon]="faExclamationCircle"></fa-icon>
+  <p>File information not found</p>
+</div>

@@ -1,0 +1,108 @@
+<div class="d-flex flex-column ">
+  <nav class="navbar bg-body-light">
+    <div class="container-fluid d-flex">
+      <a class="navbar-brand d-flex align-items-center justify-content-center flex-grow-1">
+        <span class="active-memo btn btn-outline-primary me-2">
+          Active memos
+          <span class="badge text-bg-primary">0</span>
+        </span>
+        <select class="form-select form-select-sm mx-2" aria-label="Small select example">
+          <option selected>Release of funds</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </a>
+
+      <form class="d-flex trail-search" role="search">
+        <input class="form-control trail-input" type="search" placeholder="Search" aria-label="Search" (click)="showSearchIco()">
+        <button *ngIf="showSearchIconBtn" matTooltip="Search" class="icon-btn d-flex align-items-center justify-content-center px-2" type="submit"><fa-icon [icon]="faMagnifyingGlass"></fa-icon></button>
+      </form>
+    </div>
+  </nav>
+  <div class="d-flex office-trail overflow-x-scroll container-fluid flex-row mb-3" >
+    <progress-bar></progress-bar>
+    <mat-card class="example-card start-card me-3" appearance="outlined">
+      <mat-card-header class="d-flex flex-row " >
+        <div class="icon-user d-flex align-items-center justify-content-center me-2">
+          <fa-icon class="icon-fa" [icon]="faUserCircle"></fa-icon>
+        </div>
+        <div>
+          <mat-card-title>Chihuahua</mat-card-title>
+          <mat-card-subtitle>
+            Created memo at
+            <a class="memo-time">10:09 AM</a>
+          </mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content class="d-flex align-items-center justify-content-center container-fluid flex-column">
+        <fa-icon class="faBuildingCircleArrowRight m-2" [icon]="faBuildingCircleArrowRight"></fa-icon>
+<!--        <p class="department">Finance</p>-->
+
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip >Sent</mat-chip>
+        </mat-chip-set>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer d-flex">
+
+      </mat-card-footer>
+    </mat-card>
+    <mat-card class="example-card me-3" appearance="outlined">
+      <mat-card-header class="d-flex flex-row " >
+        <div class="icon-user d-flex align-items-center justify-content-center me-2">
+          <fa-icon class="icon-fa" [icon]="faUserCircle"></fa-icon>
+        </div>
+        <div>
+          <mat-card-title>Chihuahua</mat-card-title>
+          <mat-card-subtitle>10:09 AM</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{longText}}</p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer d-flex">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip >created</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+    <mat-card class="example-card me-3" appearance="outlined">
+      <mat-card-header class="d-flex flex-row " >
+        <div class="icon-user d-flex align-items-center justify-content-center me-2">
+          <fa-icon class="icon-fa" [icon]="faUserCircle"></fa-icon>
+        </div>
+        <div>
+          <mat-card-title>Chihuahua</mat-card-title>
+          <mat-card-subtitle>10:09 AM</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{longText}}</p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer d-flex">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip >created</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+    <mat-card class="example-card me-3" appearance="outlined">
+      <mat-card-header class="d-flex flex-row " >
+        <div class="icon-user d-flex align-items-center justify-content-center me-2">
+          <fa-icon class="icon-fa" [icon]="faUserCircle"></fa-icon>
+        </div>
+        <div>
+          <mat-card-title>Chihuahua</mat-card-title>
+          <mat-card-subtitle>10:09 AM</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{longText}}</p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer d-flex">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip >created</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

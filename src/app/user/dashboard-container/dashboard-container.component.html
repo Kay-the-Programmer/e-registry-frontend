@@ -1,0 +1,11 @@
+<app-header></app-header>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" [style.width.px]="drawerWidth"  [opened]="isDrawerOpened" mode="side">
+    <app-left-sidenav></app-left-sidenav>
+  </mat-drawer>
+
+  <div class="example-sidenav-content d-flex">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

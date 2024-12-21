@@ -1,0 +1,28 @@
+.file-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.files-container {
+  width: 1000px;
+}
+
+mat-tab-group {
+  width: 100%;
+}
+.mat-mdc-list-item-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+mat-list-item {
+  border-bottom: solid 1px #ddd;
+}
+mat-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+}

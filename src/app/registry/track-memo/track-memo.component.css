@@ -1,0 +1,71 @@
+.recent-memos-container {
+  max-width: 600px;
+  width: 250px;
+  margin: 0 auto;
+  /*padding: 20px;*/
+  background-color: #f9f9f9;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+mat-toolbar {
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0;
+  color: #333;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.memo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.memo-item {
+  padding: 0;
+}
+
+.memo-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*background-color: #ddd;*/
+  padding: 10px 0;
+}
+
+.memo-content:hover {
+  background-color: rgba(164, 200, 140, 0.3);
+  cursor: pointer;
+
+}
+
+.memo-title {
+  font-weight: bold;
+  color: #555;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.badge.active {
+  background-color: #4caf50; /* Green for active */
+  color: #fff;
+}
+
+.badge.inactive {
+  background-color: #f44336; /* Red for inactive */
+  color: #fff;
+}
+
+.search {
+  border-radius: 25px;
+}

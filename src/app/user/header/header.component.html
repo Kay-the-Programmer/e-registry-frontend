@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div>
+      <fa-icon matTooltip="menu" [icon]="faBars" (click)="toggle()"></fa-icon>
+    </div>
+    <a class="navbar-brand" routerLink="/user/dashboard/home" ><img class="m-logo" ngSrc="assets/logo/e-registry-logo.png" alt="" height="1106" width="1392"></a>
+    <a class="navbar-brand e-registry text-primary" >E-REGISTRY</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between align-items-end" id="navbarSupportedContent">
+
+      <form class="d-flex flex-grow-1 mx-5" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" matTooltip="notifications" href="#"><fa-icon [icon]="faBell">Notifications</fa-icon></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " matTooltip="sign out" aria-current="page" href="#"><fa-icon [icon]="faSignOut"></fa-icon></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

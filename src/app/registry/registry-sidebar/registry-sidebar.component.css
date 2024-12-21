@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav {
+  border-bottom: solid 1px lightgrey;
+  padding: 10px;
+}
+
+.nav .nav-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav .nav-item:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+  border-radius: 10px;
+  transition: all ease-in-out .2s;
+}
+
+.nav-link {
+  padding: 20px;
+  font-size: 18px;
+  color: #494949;
+  font-weight: 400;
+}
+
+fa-icon {
+  font-size: 25px;
+  padding: 10px 10px 10px 18px;
+  width: 40px;
+}
+
+h3 {
+  margin: 0;
+  font-weight: 500;
+  padding: 15px 0 15px 0;
+  font-size: 18px;
+  color: #84858a;
+}
+
+.activity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.activity:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.activity .activity-content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.activity .activity-content .time {
+  color: #5595ff;
+  font-weight: 500;
+}
+
+.activity .activity-icon fa-icon {
+  color: #84858a;
+}
+
+.active-link {
+  background-color: rgba(0, 0, 0, 0.05); /* Change the text color */
+  font-weight: bold; /* Make it bold */
+  border-radius: 15px;
+}
+
+.activity-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+/*.active {*/
+/*  background-color: rgba(0, 0, 0, 0.1);*/
+/*  border-radius: 10px;*/
+/*}*/
+.user fa-icon {
+  color: #494949;
+}
+
+.files fa-icon{
+  color: #fbbc05;
+}
+
+.memos fa-icon {
+  color: #34a853;
+
+}
+
+.analytics fa-icon{
+  color: #4682e8;
+}
+
+
+/*!* Show scrollbar on hover *!*/
+/*.nav:hover {*/
+/*  overflow-y: auto; !* Enable scrolling when hovered *!*/
+/*}*/
+
+/*!* Style the scrollbar for modern browsers *!*/
+/*.nav::-webkit-scrollbar {*/
+/*  width: 8px; !* Width of the scrollbar *!*/
+/*}*/
+
+/*.nav::-webkit-scrollbar-thumb {*/
+/*  background: #888; !* Scrollbar thumb color *!*/
+/*  border-radius: 4px; !* Rounded corners for the scrollbar thumb *!*/
+/*}*/
+
+/*.nav::-webkit-scrollbar-thumb:hover {*/
+/*  background: #555; !* Darker color when hovered *!*/
+/*}*/
+
+/*.nav::-webkit-scrollbar-track {*/
+/*  background: #f1f1f1; !* Background of the scrollbar track *!*/
+/*}*/

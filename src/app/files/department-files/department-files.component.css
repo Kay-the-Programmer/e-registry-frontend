@@ -1,0 +1,11 @@
+.example-card {
+  width: 300px;
+  min-width: 300px;
+}
+
+.file-card {
+  border: none;
+  border-top: solid 1px lightgrey;
+  border-bottom: solid 1px lightgrey;
+  border-radius: 0;
+}

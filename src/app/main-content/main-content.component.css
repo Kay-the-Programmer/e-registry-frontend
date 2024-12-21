@@ -1,0 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.middle-sec {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+

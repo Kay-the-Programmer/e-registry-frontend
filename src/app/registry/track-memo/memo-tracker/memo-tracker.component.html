@@ -1,0 +1,16 @@
+<div class="memo-tracker-container">
+  <mat-toolbar class="d-flex gap-5">
+    <div class="d-flex flex-row align-content-center align-items-center justify-content-center">
+      <h2>Memo timeline</h2>
+<!--      <fa-icon [icon]="faAngleRight"></fa-icon>-->
+<!--      <h2>Request for funds by the minister</h2>-->
+    </div>
+    <div class="container-fluid">
+      <form class="d-flex" role="search">
+        <input class="form-control me-0 " type="search" placeholder="Search" aria-label="Search">
+<!--        <button class="btn btn-outline-success" type="submit">Search</button>-->
+      </form>
+    </div>
+  </mat-toolbar>
+  <app-timeline [events]="memoTimeline"></app-timeline>
+</div>

@@ -1,0 +1,60 @@
+.compose-card {
+  margin: 0;
+  max-width: 1000px;
+  padding: 0;
+  width: 1000px;
+  background-color: transparent;
+  box-shadow: none;
+}
+mat-card-header {
+  border-bottom: solid 1px #ddd;
+  border-right: solid 1px #ddd;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  padding: 0;
+  margin: 0;
+}
+mat-card-title {
+  margin: 5px 0 0;
+  padding: 10px 20px;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+mat-card-content{
+  border-bottom: solid 1px #ddd;
+  border-right: solid 1px #ddd;
+  padding-top: 10px;
+}
+.memo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+quill-editor {
+  /*border: 1px solid #ccc;*/
+  border-radius: 5px;
+}
+.form-control, .form-select {
+  border-radius: 0;
+}
+mat-form-field {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}

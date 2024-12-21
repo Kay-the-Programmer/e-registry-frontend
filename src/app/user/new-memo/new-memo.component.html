@@ -1,0 +1,65 @@
+<mat-card class="compose-card">
+  <mat-card-header>
+    <mat-card-title>New Memo</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="memoForm" class="memo-form">
+
+      <div class="d-flex flex-row gap-3">
+        <!-- Recipients Section -->
+        <mat-form-field class="flex-grow-1 rec" appearance="outline">
+          <mat-label>Memo Destination</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let recipient of recipients" [value]="recipient.value" >
+              {{ recipient.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- Files Section -->
+        <mat-form-field class="fil" appearance="outline">
+          <mat-label>Parent file</mat-label>
+          <mat-select>
+<!--            <mat-option *ngFor="let file of files" [value]="file.fileNo">-->
+<!--              {{ file.fileTitle }}-->
+<!--            </mat-option>-->
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Subject Section -->
+      <mat-form-field appearance="outline">
+        <mat-label>Memo Subject</mat-label>
+        <input matInput
+          formControlName="subject"
+          placeholder="Enter memo subject"
+        />
+      </mat-form-field>
+      <div class="form-group">
+
+      </div>
+
+      <!-- Body Section -->
+      <div class="form-group">
+        <quill-editor
+          id="body"
+          formControlName="body"
+          [style]="{ height: '300px' }"
+          [placeholder]="'Write your memo here...'"
+        ></quill-editor>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="memoForm.invalid"
+          (click)="sendMemo()"
+        >
+          Send
+        </button>
+        <button mat-button type="button" (click)="saveDraft()">Save Draft</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

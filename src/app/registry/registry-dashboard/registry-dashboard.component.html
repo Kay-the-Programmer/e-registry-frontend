@@ -1,0 +1,79 @@
+<div class="dashboard-container d-flex flex-column w-100">
+
+  <div class="card-container d-flex flex-column">
+    <nav class="nav d-flex container-fluid border-secondary border-bottom justify-content-between align-items-center m-0 p-0 bg-light">
+      <h2 class="m-0 p-0 px-3">File Requests</h2>
+      <mat-paginator class="bg-light" [pageSizeOptions]="[5, 10, 20]"
+                     aria-label="Select page of file requests">
+      </mat-paginator>
+    </nav>
+    <!-- File Requests Card -->
+    <div class="d-flex flex-row align-items-start align-content-start">
+      <div class="flex-grow-1 req">
+        <div class="">
+          <table mat-table
+                 [dataSource]="dataSource" multiTemplateDataRows
+                 class="">
+            @for (column of displayedColumns; track column) {
+              <ng-container  matColumnDef="{{column}}">
+                <th  mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <td  mat-cell *matCellDef="let element"> {{element[column]}} </td>
+              </ng-container>
+            }
+            <ng-container matColumnDef="expand">
+              <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button aria-label="expand row" (click)="(expandedRequest = expandedRequest === element ? null : element); $event.stopPropagation()">
+                  @if (expandedRequest === element) {
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                  } @else {
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  }
+                </button>
+              </td>
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+              <td  mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+                <div class="example-element-detail "
+                     [@detailExpand]="element == expandedRequest ? 'expanded' : 'collapsed'">
+                  <div class="example-element-diagram">
+                    <div class="example-element-position"> {{element.id}} </div>
+                    <div class="example-element-symbol"> {{element.from}} </div>
+                    <div class="example-element-name"> {{element.date}} </div>
+<!--                    <div class="example-element-weight"> {{element.requestStatus}} </div>-->
+                  </div>
+                  <div class="example-element-description">
+                    {{element.reason}}
+                    <span class="example-element-description-attribution"> by: {{element.sender}} </span>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+                class="example-element-row"
+                [class.example-expanded-row]="expandedRequest === element"
+                (click)="expandedRequest = expandedRequest === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+          </table>
+        </div>
+
+      </div>
+      <mat-card class="dashboard-card" appearance="outlined">
+        <ngx-charts-bar-vertical
+          [results]="fileRequests"
+          [view]="[150, 300]"
+          scheme="horizon"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="false">
+        </ngx-charts-bar-vertical>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

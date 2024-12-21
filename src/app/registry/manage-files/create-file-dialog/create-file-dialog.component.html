@@ -1,0 +1,56 @@
+<div class="w-100 p-3">
+  <h2 mat-dialog-title>Create File</h2>
+  <form [formGroup]="createFileForm" class="px-2">
+    <!-- File ID Field -->
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>File ID</mat-label>
+      <input matInput formControlName="fileNo" placeholder="Enter file ID">
+      <mat-error *ngIf="createFileForm.get('fileNo')?.hasError('required')">
+        File ID is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- File Name Field -->
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>File Name</mat-label>
+      <input matInput formControlName="fileTitle" placeholder="Enter file name">
+      <mat-error *ngIf="createFileForm.get('fileTitle')?.hasError('required')">
+        File name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Subject Field -->
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Subject</mat-label>
+      <input matInput formControlName="fileSubject" placeholder="Enter file subject">
+      <mat-error *ngIf="createFileForm.get('fileSubject')?.hasError('required')">
+        Subject is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Department Field -->
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Department</mat-label>
+      <mat-select formControlName="departmentId" placeholder="Select department">
+        <mat-option *ngFor="let department of departments" [value]="department.id">
+          {{ department.departmentName }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="createFileForm.get('departmentId')?.hasError('required')">
+        Department is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <input matInput formControlName="id" [value]="createFileForm.get('fileNo')" >
+    </mat-form-field>
+
+    <!-- Actions -->
+    <div mat-dialog-actions class="d-flex justify-content-end">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-flat-button color="primary" (click)="onSave()" [disabled]="!createFileForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

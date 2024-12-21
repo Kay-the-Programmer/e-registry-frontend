@@ -1,0 +1,74 @@
+.example-card {
+  width: 300px;
+  min-width: 300px;
+  max-height: 250px;
+  margin-bottom: 10px;
+}
+
+.example-card-footer {
+  padding: 16px;
+}
+
+.trail-search {
+  background-color: lightgrey;
+  border-radius: 5px;
+  transition: ease-in-out 0.3s;
+  border: solid 1px lightgrey;
+
+}
+
+.trail-input {
+  outline: none;
+  border: none;
+  border-radius: 0;
+  height: 30px;
+  background-color: transparent;
+}
+
+.trail-input:focus{
+  outline: none;
+  box-shadow: none;
+  border-right: none;
+}
+.trail-search:focus-within {
+  border: solid 1px #3498db;
+}
+.icon-btn {
+  border-radius: 0;
+  transition: ease-in-out 0.3s;
+  border: none;
+  background-color: transparent;
+  border-left: #FFFFff 1px solid;
+}
+
+.icon-fa {
+  font-size: 3rem;
+  color: rgba(211, 124, 36, 0.32);
+}
+
+.active-memo {
+  border: none;
+  padding: 2px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.active-memo:hover {
+  background-color: transparent;
+  color: #0d6efd;
+}
+
+.active-memo .badge {
+  border-radius: 50%;
+}
+.faBuildingCircleArrowRight {
+  font-size: 70px;
+  padding: 20px;
+  /*border: solid 1px lightgrey;*/
+  /*border-radius: 15px;*/
+}
+.example-card {
+  /*border: none;*/
+  /*border-bottom: solid 1px lightgrey;*/
+  border-radius: 5px ;
+}

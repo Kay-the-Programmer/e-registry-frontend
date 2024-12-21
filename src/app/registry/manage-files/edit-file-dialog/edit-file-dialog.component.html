@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Edit File</h2>
+<mat-dialog-content>
+  <form [formGroup]="editFileForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>File No</mat-label>
+      <input matInput formControlName="id" [disabled]="false">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>File Title</mat-label>
+      <input matInput formControlName="fileTitle">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>File Subject</mat-label>
+      <input matInput formControlName="fileSubject">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Department</mat-label>
+      <mat-select formControlName="departmentId">
+        <mat-option *ngFor="let department of data.departments" [value]="department.id">
+          {{ department.departmentName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="editFileForm.invalid" (click)="onSave()">Save</button>
+</mat-dialog-actions>

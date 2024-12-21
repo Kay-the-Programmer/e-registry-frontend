@@ -1,0 +1,97 @@
+<div class="container d-flex justify-content-between align-items-center h-100 w-100"
+     xmlns="http://www.w3.org/1999/html">
+  <mat-card class="card container" appearance="raised">
+    <mat-progress-bar *ngIf="isProgressBarVisible" class="progress" mode="indeterminate"></mat-progress-bar>
+    <!-- Original Content -->
+    <div class="top-header d-flex flex-row mb-4">
+      <img ngSrc="assets/logo/e-registry-logo.png" alt="" height="1106" width="1392" />
+    </div>
+    <div *ngIf="!showDynamicContent">
+      <div class="d-flex flex-row gap-2 justify-content-between">
+        <section class="sides">
+          <h1>Sign in</h1>
+          <h3>Use your corporate account</h3>
+        </section>
+        <section class="sides">
+          <form [formGroup]="signInForm">
+          <div class="content d-flex flex-column gap-2">
+
+            <div class="example-container">
+              <div class="example-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Enter your email</mat-label>
+                  <input matInput
+                         [formControl]="email"
+                         placeholder="pat@example.com"
+                         (blur)="updateErrorMessage()"
+                         required>
+                  @if (email.invalid) {
+                    <mat-error>{{errorMessage}}</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              <div class="example-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Enter your password</mat-label>
+                  <input matInput
+                         [type]="hide ? 'password' : 'text'"
+                         [formControl]="password"
+                  >
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="mb-3">
+              <p>
+                Not your computer? Use Guest mode to sign in privately.
+                <a href="#">Learn more about using Guest mode.</a>
+              </p>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="button-row d-flex justify-content-between">
+              <button class="me-3" mat-flat-button>Don't have an account?</button>
+              <button class="rounded-5" color="primary" [disabled]="signInForm.invalid || isLoading"
+                      mat-flat-button (click)="onSignIn()">
+                {{buttonStatus}}</button>
+            </div>
+          </div>
+          </form>
+        </section>
+      </div>
+    </div>
+
+<!--    <div *ngIf="showDynamicContent">-->
+<!--      &lt;!&ndash; New Content After Progress Bar &ndash;&gt;-->
+<!--      <div class="d-flex flex-row gap-2 justify-content-between">-->
+<!--        <section class="sides">-->
+<!--          <h1>Welcome</h1>-->
+<!--          <h3>Patrick John</h3>-->
+<!--        </section>-->
+<!--        <section class="sides">-->
+<!--          <div class="content d-flex flex-column gap-2">-->
+<!--            <div class="example-container">-->
+<!--              <mat-form-field appearance="outline">-->
+<!--                <mat-label>Enter your password</mat-label>-->
+<!--                <input matInput [type]="hide ? 'password' : 'text'">-->
+<!--              </mat-form-field>-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--              <p class="d-flex align-items-center justify-content-start gap-3">-->
+<!--                <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">-->
+<!--                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+<!--                </button>-->
+<!--                Show password-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="actions">-->
+<!--            <div class="button-row d-flex justify-content-end">-->
+<!--              <button class="next" mat-flat-button routerLink="/user/dashboard/home">Login</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </section>-->
+<!--      </div>-->
+
+<!--    </div>-->
+  </mat-card>
+</div>

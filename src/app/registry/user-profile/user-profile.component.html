@@ -1,0 +1,88 @@
+<div class=" user-pr d-flex align-items-center justify-content-center align-items-center w-100 flex-column">
+  <div class="w-100 d-flex align-items-center justify-content-center flex-column" *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <p class="my-5">Loading user profile...</p>
+  </div>
+  <mat-card *ngIf="!isLoading && user">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>Welcome {{ user.fName }} {{user.lName}}</mat-card-title>
+        <mat-card-subtitle>This is your profile page.</mat-card-subtitle>
+        <fa-icon class="user-icon" [icon]="faUserCircle"></fa-icon>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="mt-3 w-100">
+      <div class="d-flex ">
+        <strong class="title">Registered email: </strong> <p>{{user.email}}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="d-flex ">
+        <strong class="title">Your role: </strong> <p>{{user.role}}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="d-flex ">
+        <strong class="title">Your department: </strong> <p>{{ getDepartmentName(user.departmentId) }}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="d-flex ">
+        <strong class="title">Your employee No.: </strong> <p>{{ user.empNumber }}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="d-flex ">
+        <strong class="title">Your position: </strong> <p>{{ user.position }}</p>
+        <div class="text px-3 text-warning"><fa-icon matTooltip="users will use this as a recipient to send memos to you" [icon]="faExclamationCircle"></fa-icon>
+        </div>
+      </div>
+      <div class="d-flex align-items-end justify-content-center w-100 mb-3" data-bs-toggle="collapse" data-bs-target="#collapsePasswordReset" aria-expanded="false" aria-controls="collapsePasswordReset">
+        <button *ngIf="!toggled" [hidden]="toggled" (click)="showUpArrow()" mat-raised-button>Change password</button>
+        <button class="up" *ngIf="toggled" [hidden]="!toggled" (click)="showUpArrow()" mat-raised-button color="secondary"><fa-icon [icon]="faAngleUp"></fa-icon></button>
+      </div>
+      <div class="collapse" id="collapsePasswordReset">
+        <div class="card card-body">
+          <h2>Reset your password</h2>
+          <form [formGroup]="passwordResetForm">
+            <mat-form-field appearance="outline">
+              <mat-label>New Password</mat-label>
+              <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="newPassword">
+              <mat-error *ngIf="passwordResetForm.get('newPassword')?.hasError('required')">
+                New Password is required.
+              </mat-error>
+              <mat-error *ngIf="passwordResetForm.get('newPassword')?.hasError('minlength')">
+                Password must be at least 8 characters long.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="confirmPassword">
+              <mat-error *ngIf="passwordResetForm.get('confirmPassword')?.hasError('required')">
+                Confirm Password is required.
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Mismatch error -->
+            <div *ngIf="passwordResetForm.errors?.['mismatch']">
+              <p class="error">Passwords do not match.</p>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between gap-3">
+              <!-- Action Buttons -->
+              <button mat-button (click)="togglePasswordVisibility()">
+                {{ showPassword ? 'Hide Passwords' : 'Show Passwords' }}
+              </button>
+              <button mat-flat-button color="primary" [disabled]="passwordResetForm.invalid" (click)="resetPassword()">Reset Password</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+
+
+  <!-- Error state -->
+  <div *ngIf="!isLoading && !user">
+    <p>Failed to load user profile. Please try again later.</p>
+  </div>
+
+</div>

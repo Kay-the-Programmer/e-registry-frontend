@@ -1,0 +1,115 @@
+<mat-card *ngIf="isVisible" class="compose-card p-0" appearance="outlined">
+  <mat-card-content class="m-0 p-0">
+    <!--   header section  -->
+    <div class="p-2 memo-top-header " *ngIf="isVisible">
+      <h2>New memo</h2>
+      <div class="d-flex window-controls justify-content-end gap-2">
+        <div class="d-flex gap-3 m-0">
+          <fa-icon class="minimize" [icon]="faWindowMinimize"></fa-icon>
+          <fa-icon class="maximize" [icon]="faUpRightAndDownLeftFromCenter"></fa-icon>
+        </div>
+        <button type="button" matTooltip="close" class="btn-close" aria-label="Close" (click)="toggleBackVisibility()"></button>
+      </div>
+    </div>
+    <!-- compose memo -->
+    <form class="compose-memo-form p-2">
+      <!--recipients section-->
+      <div class="recipients container-fluid m-0 p-0 mb-2" *ngIf="isVisible">
+        <div class="select-office" *ngIf="isVisible">
+          <div class="container-fluid d-flex p-0" >
+            <div class="destination-office flex-grow-1 d-flex" *ngIf="!showDestinationField">
+              <p class="p-2 pe-2 m-0 {{chooseDestination}}">To:</p>
+              <select class=" mb-2 form-select form-select-sm flex-grow-1 cc-select {{destinationInput}}" aria-label="Small select destination office">
+                <option selected><fa-icon class="icon" [icon]="userIcon"></fa-icon>Select destination office</option>
+                <option value="1">Office One</option>
+                <option value="2">Office Two</option>
+                <option value="3">Office Three</option>
+              </select>
+            </div>
+            <a class="cc" data-bs-toggle="collapse" href="#collapseCc" *ngIf="ccVisible" (click)="toggleCc()" role="button"
+               aria-expanded="false" aria-controls="collapseMore">Cc:</a>
+            <a class="cc" data-bs-toggle="collapse" href="#collapseUfs" *ngIf="ufsVisible" (click)="toggleUfs()" role="button"
+               aria-expanded="false" aria-controls="collapseMore">Ufs:
+            </a>
+          </div>
+        </div>
+        <!-- cc -->
+        <div class="container-fluid p-0" id="collapseCc" *ngIf="ccInvisible">
+          <div class="cc-container">
+            <span class="cc-text p-2 m-0 align-items-start" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseCcRecipients" aria-expanded="true"
+                  aria-controls="collapseCcRecipients" (click)="toggleCc()">
+              Cc:
+            </span>
+            <!-- cc selections -->
+            <div class="flex-grow-1 collapse show cc-recipients-check" id="collapseCcRecipients">
+              <div class="card-body d-flex container-fluid">
+                <div class="flex-grow-1 d-flex flex-wrap">
+                  <div class="box">
+                    <input type="checkbox" class="btn-check" id="btn-check-2-outlined" autocomplete="off">
+                    <label matTooltip="click to select" class="btn_check btn btn-outline-secondary example-ripple-container"  matRipple
+                           for="btn-check-2-outlined"> <fa-icon class="icon" [icon]="userIcon"></fa-icon> Chief Accountant</label><br>
+                  </div>
+                  <div class="box">
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label matTooltip="click to select" class="btn_check btn btn-outline-secondary example-ripple-container"  matRipple
+                           for="btn-check-outlined"><fa-icon class="icon" [icon]="userIcon"></fa-icon> Chief Accountant</label><br>
+                  </div>
+                  <div class="box">
+                    <div class="container-fluid d-flex justify-content-end">
+                      <div>
+                        <a routerLink="home"></a>
+                      </div>
+                    </div>
+                    <input type="checkbox" class="btn-check" id="btn-check-3-outlined" autocomplete="off">
+                    <label matTooltip="click to select" class="btn_check btn btn-outline-secondary example-ripple-container"  matRipple
+                           for="btn-check-3-outlined"><fa-icon class="icon" [icon]="userIcon"></fa-icon> Chief Accountant</label><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--      ufs -->
+        <div class="container-fluid p-0 m-0 mb-1" id="collapseUfs" *ngIf="ufsInvisible">
+          <div class="ufs-container">
+            <span class="cc-text p-2 pe-2 m-0" (click)="toggleUfs()">Ufs:</span>
+            <select class="ufs-select mb-2 form-select form-select-sm" aria-label="Small select example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- file selection and subject -->
+      <div class="file-selection">
+        <!--choose file id-->
+        <div class="container-fluid d-flex mb-0 select-file-section"  *ngIf="isVisible">
+          <a class="file-id cc-text"  *ngIf="isVisible">File ID:</a>
+          <select  matTooltip="choose file" class="flex-grow-1 form-select form-select-sm form-select-file" *ngIf="isVisible" aria-label="Small select file">
+            <option selected>File ID</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <!--subject section-->
+        <div class="container-fluid d-flex align-items-center subject-container">
+          <a class="subject-text" *ngIf="isVisible">Subject:</a>
+          <input type="text" *ngIf="isVisible" class="form-control subject-input"
+                 [placeholder]="memo_placeholder" (click)="toggleVisibility()">
+        </div>
+        <!--action buttons section-->
+        <div class="buttons container-fluid" *ngIf="isVisible">
+          <button class="btn btn-secondary submit-button" [disabled]="saveDraftBtn" type="submit">Save Draft</button>
+          <button class="btn btn-primary submit-button" [disabled]="sendBtnDisabled" type="submit">Send</button>
+        </div>
+      </div>
+    </form>
+  <!-- <app-edit-memo></app-edit-memo>-->
+  </mat-card-content>
+</mat-card>
+

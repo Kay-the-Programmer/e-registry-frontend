@@ -1,0 +1,19 @@
+
+<div class="d-flex flex-row">
+  <div class="container-fluid m-0 p-0 flex-grow-1">
+    <app-memo-tracker></app-memo-tracker>
+  </div>
+  <div class="recent-memos-container">
+    <mat-toolbar>
+      <h2 >Recent Memos</h2>
+    </mat-toolbar>
+    <ul class="memo-list">
+      <li *ngFor="let memo of recentMemos" class="memo-item">
+        <div class="memo-content">
+          <span class="memo-title px-3">{{ memo.title }}</span>
+        </div>
+        <mat-divider></mat-divider>
+      </li>
+    </ul>
+  </div>
+</div>
