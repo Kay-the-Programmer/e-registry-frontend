@@ -23,6 +23,7 @@ import {HttpClientModule, HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EditFileDialogComponent} from "./edit-file-dialog/edit-file-dialog.component";
 import {JsonPipe} from '@angular/common';
+import {DeleteFileConfirmationComponent} from "./delete-file-confirmation/delete-file-confirmation.component";
 
 @Component({
   selector: 'app-manage-files',
@@ -33,7 +34,7 @@ import {JsonPipe} from '@angular/common';
     MatTableModule, HttpClientModule, FaIconComponent, RouterModule,
     MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderRow,
     MatHeaderRowDef, MatRow, MatRowDef, MatSort, MatSortHeader, MatTable,
-    MatToolbar, MatHeaderCellDef, JsonPipe],
+    MatToolbar, MatHeaderCellDef, JsonPipe, DeleteFileConfirmationComponent],
   templateUrl: './manage-files.component.html',
   styleUrl: './manage-files.component.css'
 })
@@ -44,7 +45,7 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  length = 50;
+  length!: number;
 
   pageEvent!: PageEvent;
   pageSize = 10;
@@ -109,8 +110,38 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
   }
 
   deleteFile(fileId: string): void {
-    this.fileService.deleteFile(fileId).subscribe(() => {
-      this.files = this.files.filter(file => file.fileNo !== fileId);
+    const dialogRef = this.dialog.open(DeleteFileConfirmationComponent, {
+      width: '400px',
+      panelClass: 'custom-dialog-container',
+      data: {
+        title: 'Confirm Deletion',
+        message: 'Are you sure you want to delete this file? This action cannot be undone.',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        this.fileService.deleteFile(fileId).subscribe({
+          next: () => {
+            this.files = this.files.filter(file => file.id === fileId);
+            this.dataSource.data = [...this.files]; // Refresh the table
+            this.snackBar.open('File deleted successfully.', 'Close', { duration: 3000 });
+          },
+          error: (err) => {
+            // console.error('Error deleting file:', err);
+            // this.snackBar.open('Failed to delete file. Please try again.', 'Close', { duration: 3000 });
+
+            console.error('Error deleting file:', err);
+
+            const errorMessage =
+              err.status === 500
+                ? 'An error occurred on the server. Please try again later.'
+                : err.error?.message || 'Failed to delete file.';
+
+            this.snackBar.open(errorMessage, 'Close', { duration: 10000 });
+          },
+        });
+      }
     });
   }
 
