@@ -24,7 +24,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {EditFileDialogComponent} from "./edit-file-dialog/edit-file-dialog.component";
 import {JsonPipe} from '@angular/common';
 import {DeleteFileConfirmationComponent} from "./delete-file-confirmation/delete-file-confirmation.component";
-import {Location} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
