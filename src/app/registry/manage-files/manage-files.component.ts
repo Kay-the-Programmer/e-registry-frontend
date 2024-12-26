@@ -74,7 +74,6 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
     private fileService: FileService,
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private location: Location,
   ) {}
 
   dataSource = new MatTableDataSource<File>([]);
@@ -201,7 +200,7 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
           next: () => {
             this.snackBar.open('File updated successfully.', 'Close', { duration: 3000 });
           },
-          error: (err) => {
+          error: () => {
             this.snackBar.open('Failed to update file.', 'Close', { duration: 3000 });
           }
         });
@@ -214,7 +213,7 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
       next: () => {
         this.router.navigate(['/registry/dashboard/file-details', fileNo]);
       },
-      error: (err) => {
+      error: () => {
         this.snackBar.open('Failed to open file.', 'Close', { duration: 1000 });
       }
     });

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, signal} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import {MatToolbar} from "@angular/material/toolbar";
@@ -12,7 +12,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule, HttpClient} from "@angular/common/http";
-import {DeleteFileConfirmationComponent} from "../manage-files/delete-file-confirmation/delete-file-confirmation.component";
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {CommentDialogComponent} from "./comment-dialog/comment-dialog.component";
 import {MatExpansionModule} from '@angular/material/expansion';
