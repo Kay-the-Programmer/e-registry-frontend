@@ -217,6 +217,5 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
         this.snackBar.open('Failed to open file.', 'Close', { duration: 1000 });
       }
     });
-
   }
 }
