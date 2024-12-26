@@ -47,6 +47,7 @@ mat-card h2 {
   background-color: transparent;
   box-shadow: none;
 }
+
 .xt {
   padding: 10px 20px;
 }
@@ -91,3 +92,8 @@ tr.mat-row:hover {
 .memo-table td.mat-cell {
   padding: 10px;
 }
+
+.icon {
+  font-size: 30px;
+}
+

@@ -86,9 +86,67 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 .example-element-description {
-  padding: 16px;
+  padding: 16px 10px;
+  border-top: solid 1px lightgrey;
+  width: 100%;
+  background-color: rgba(0, 17, 17, 0.02);
 }
-
 .example-element-description-attribution {
   opacity: 0.5;
+}
+mat-accordion {
+  margin-bottom: 10px;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: solid 1px lightgrey;
+}
+button.re {
+  color: #ff4d4d;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.re mat-icon {
+  font-size: 20px; /* Adjust icon size */
+}
+
+button.ap {
+  color: #4caf50;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.5s ease-in-out;
+}
+
+button.ap:hover {
+  transform: scale(1.1); /* Slightly enlarges the button */
+}
+button.re:hover {
+  transform: scale(0.95); /* Shrinks the button */
+  transition: transform 0.5s ease-in-out; /* Smooth transition effect */
+}
+
+
+.detail .left {
+  border-bottom: solid 1px lightgrey;
+  border-right: solid 1px lightgrey;
+  padding: 10px;
+}
+
+.detail .right {
+  padding: 10px;
+  border-bottom: solid 1px lightgrey;
+}
+.detail .header {
+ border-bottom: solid 1px #4caf50;
+  font-weight: bold;
 }

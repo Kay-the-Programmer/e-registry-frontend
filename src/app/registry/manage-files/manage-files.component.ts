@@ -24,6 +24,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {EditFileDialogComponent} from "./edit-file-dialog/edit-file-dialog.component";
 import {JsonPipe} from '@angular/common';
 import {DeleteFileConfirmationComponent} from "./delete-file-confirmation/delete-file-confirmation.component";
+import {Location} from "@angular/common";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-manage-files',
@@ -34,7 +36,7 @@ import {DeleteFileConfirmationComponent} from "./delete-file-confirmation/delete
     MatTableModule, HttpClientModule, FaIconComponent, RouterModule,
     MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderRow,
     MatHeaderRowDef, MatRow, MatRowDef, MatSort, MatSortHeader, MatTable,
-    MatToolbar, MatHeaderCellDef, JsonPipe, DeleteFileConfirmationComponent],
+    MatToolbar, MatHeaderCellDef, JsonPipe, DeleteFileConfirmationComponent, MatProgressSpinner],
   templateUrl: './manage-files.component.html',
   styleUrl: './manage-files.component.css'
 })
@@ -58,7 +60,6 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
     this.pageIndex = e.pageIndex;
   }
 
-
   ngAfterViewInit() {
     if (this.paginator && this.sort) {
       this.dataSource.paginator = this.paginator;
@@ -72,7 +73,8 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
     private router: Router,
     private fileService: FileService,
     private http: HttpClient,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: Location,
   ) {}
 
   dataSource = new MatTableDataSource<File>([]);
@@ -123,21 +125,17 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
       if (confirmed) {
         this.fileService.deleteFile(fileId).subscribe({
           next: () => {
-            this.files = this.files.filter(file => file.id === fileId);
+            this.files = this.files.filter(file => file.id !== fileId);
             this.dataSource.data = [...this.files]; // Refresh the table
             this.snackBar.open('File deleted successfully.', 'Close', { duration: 3000 });
+            // this.location.reload();
+            window.location.reload();
           },
           error: (err) => {
-            // console.error('Error deleting file:', err);
-            // this.snackBar.open('Failed to delete file. Please try again.', 'Close', { duration: 3000 });
-
-            console.error('Error deleting file:', err);
-
             const errorMessage =
               err.status === 500
                 ? 'An error occurred on the server. Please try again later.'
                 : err.error?.message || 'Failed to delete file.';
-
             this.snackBar.open(errorMessage, 'Close', { duration: 10000 });
           },
         });
@@ -201,17 +199,25 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
         this.fileService.updateFile(file.id, updatedFile).subscribe(
           {
           next: () => {
-            console.log("updated File", file)
-
             this.snackBar.open('File updated successfully.', 'Close', { duration: 3000 });
           },
           error: (err) => {
-            console.error('Error updating file:', err, updatedFile);
-
             this.snackBar.open('Failed to update file.', 'Close', { duration: 3000 });
           }
         });
       }
     });
+  }
+
+  openFile(fileNo: string) {
+    this.fileService.getFileById(fileNo).subscribe({
+      next: () => {
+        this.router.navigate(['/registry/dashboard/file-details', fileNo]);
+      },
+      error: (err) => {
+        this.snackBar.open('Failed to open file.', 'Close', { duration: 1000 });
+      }
+    });
+
   }
 }

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, signal} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import {MatToolbar} from "@angular/material/toolbar";
@@ -11,10 +11,19 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {HttpClientModule, HttpClient} from "@angular/common/http";
+import {DeleteFileConfirmationComponent} from "../manage-files/delete-file-confirmation/delete-file-confirmation.component";
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {CommentDialogComponent} from "./comment-dialog/comment-dialog.component";
+import {MatExpansionModule} from '@angular/material/expansion';
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
+
+
 @Component({
   selector: 'app-registry-dashboard',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, CommonModule, MatTableModule, MatPaginatorModule, MatCardModule, NgxChartsModule, MatToolbar, MatTable],
+  imports: [MatIconModule, MatButtonModule, MatExpansionModule, MatDialogModule, HttpClientModule, CommonModule, MatTableModule, MatPaginatorModule, MatCardModule, NgxChartsModule, MatToolbar, MatTable, FaIconComponent],
   templateUrl: './registry-dashboard.component.html',
   styleUrl: './registry-dashboard.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,12 +35,17 @@ import {MatButtonModule} from "@angular/material/button";
     ]),
   ],
 })
-export class RegistryDashboardComponent implements AfterViewInit{
-  displayedColumns: string[] = ['id', 'from', 'date', 'status']
+export class RegistryDashboardComponent implements AfterViewInit, OnInit{
+  readonly panelOpenState = signal(false);
+
+  constructor(private http : HttpClient, private dialog : MatDialog, ) {
+  }
+
+  displayedColumns: string[] = ['fileNo', 'reason', 'status']
 
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedRequest!: FileRequest | null;
-  dataSource = new MatTableDataSource<FileRequest>(fileRequestsTable);
+  dataSource = new MatTableDataSource<FileRequest>();
   // Sample data for ngx-charts graphs
   fileRequests = [
     { name: 'Pending', value: 10 },
@@ -46,32 +60,64 @@ export class RegistryDashboardComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-
-
   colorScheme='vivid';
 
-}
+  //fetch file requests from the API
+  fetchFileRequests(){
 
-//file requests data
-const fileRequestsTable: FileRequest[] = [
-  { id: 1, from: 'Directorate of finance', date: '2024-12-12 10:30:00', status: 'pending', reason: 'Budget approval needed', sender: 'John Smith' },
-  { id: 2, from: 'Human Resources', date: '2024-12-11 09:15:00', status: 'approved', reason: 'New hire onboarding files', sender: 'Jane Doe' },
-  { id: 3, from: 'IT Department', date: '2024-12-10 14:00:00', status: 'rejected', reason: 'Incomplete documentation', sender: 'Alice Brown' },
-  { id: 4, from: 'Marketing', date: '2024-12-09 08:45:00', status: 'pending', reason: 'Approval of campaign expenses', sender: 'Bob Johnson' },
-  { id: 5, from: 'Legal Department', date: '2024-12-08 16:00:00', status: 'approved', reason: 'Contract review for vendors', sender: 'Emily Davis' },
-  { id: 6, from: 'Directorate of finance', date: '2024-12-07 12:30:00', status: 'pending', reason: 'Finalizing quarterly reports', sender: 'Michael Wilson' },
-  { id: 7, from: 'Sales Team', date: '2024-12-06 11:20:00', status: 'rejected', reason: 'Request outside authorized period', sender: 'Chris Martin' },
-  { id: 8, from: 'IT Department', date: '2024-12-05 13:10:00', status: 'approved', reason: 'Infrastructure upgrade proposal', sender: 'Sophia White' },
-  { id: 9, from: 'Human Resources', date: '2024-12-04 15:00:00', status: 'pending', reason: 'Employee termination paperwork', sender: 'James Anderson' },
-  { id: 10, from: 'Marketing', date: '2024-12-03 10:25:00', status: 'rejected', reason: 'Insufficient budget allocation', sender: 'Sarah Taylor' },
-  { id: 11, from: 'Sales Team', date: '2024-12-02 17:50:00', status: 'approved', reason: 'Client contract submission', sender: 'David Thomas' },
-  { id: 12, from: 'Legal Department', date: '2024-12-01 14:00:00', status: 'pending', reason: 'Compliance audit files', sender: 'Olivia Moore' },
-  { id: 13, from: 'Directorate of finance', date: '2024-11-30 09:30:00', status: 'approved', reason: 'Expense reimbursement approval', sender: 'Ethan Martin' },
-  { id: 14, from: 'IT Department', date: '2024-11-29 16:00:00', status: 'rejected', reason: 'Duplicate request detected', sender: 'Emma Harris' },
-  { id: 15, from: 'Human Resources', date: '2024-11-28 13:45:00', status: 'pending', reason: 'Leave management files', sender: 'Daniel Clark' },
-  { id: 16, from: 'Sales Team', date: '2024-11-27 11:00:00', status: 'approved', reason: 'Quarterly sales reports', sender: 'Mia Lewis' },
-  { id: 17, from: 'Marketing', date: '2024-11-26 08:30:00', status: 'rejected', reason: 'Insufficient campaign details', sender: 'Noah Walker' },
-  { id: 18, from: 'Legal Department', date: '2024-11-25 12:00:00', status: 'pending', reason: 'Dispute resolution documents', sender: 'Lily Hall' },
-  { id: 19, from: 'Directorate of finance', date: '2024-11-24 10:15:00', status: 'approved', reason: 'Annual budget review', sender: 'William Allen' },
-  { id: 20, from: 'IT Department', date: '2024-11-23 14:30:00', status: 'rejected', reason: 'Incorrect request format', sender: 'Charlotte Scott' },
-];
+    const apiUrl = 'http://localhost:3000/file-requests/get-all-file-requests'; // API URL
+    this.http.get<FileRequest[]>(apiUrl).subscribe({
+      next: (data) => {
+        this.dataSource.data = data;
+      },
+      error: (err) => {
+        console.error('Error fetching file requests:', err);
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.fetchFileRequests(); // Fetch the file requests when the component initializes
+  }
+
+  openCommentDialogOnDelete(requestId: string): void {
+    const dialogRef = this.dialog.open(CommentDialogComponent, {
+      width: '400px',
+      data: { requestId },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Handle the comment (result.comment) and approve the request
+        console.log('Approval comment:', result.comment);
+        this.rejectRequest(requestId, result.comment);
+      }
+    });
+  }
+
+  openCommentDialog(requestId: string): void {
+    const dialogRef = this.dialog.open(CommentDialogComponent, {
+      width: '400px',
+      data: { requestId },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Handle the comment (result.comment) and approve the request
+        console.log('Approval comment:', result.comment);
+        this.approveRequest(requestId, result.comment);
+      }
+    });
+  }
+
+  approveRequest(requestId: string, comment: string): void {
+    // Add your logic to approve the request with the comment
+    console.log(`Request ${requestId} approved with comment: ${comment}`);
+  }
+
+  rejectRequest(requestId: string, comment: string) {
+    console.log(`Request ${requestId} rejected: ${comment}`);
+  }
+
+  protected readonly faUserCircle = faUserCircle;
+}
