@@ -23,6 +23,9 @@ import {FileDetailsComponent} from "./registry/manage-files/file-details/file-de
 import {MemoDetailsComponent} from "./registry/manage-files/memo-details/memo-details.component";
 import {NewMemoComponent} from "./user/new-memo/new-memo.component";
 import {UserFilesComponent} from "./user/user-files/user-files.component";
+import {PendingComponent} from "./registry/registry-dashboard/file-requests/pending/pending.component";
+import {ApprovedComponent} from "./registry/registry-dashboard/file-requests/approved/approved.component";
+import {RejectedComponent} from "./registry/registry-dashboard/file-requests/rejected/rejected.component";
 
 export const routes: Routes = [
   {
@@ -90,7 +93,13 @@ export const routes: Routes = [
         children: [
           {
             path: "registry-dashboard",
-            component: RegistryDashboardComponent
+            component: RegistryDashboardComponent,
+            children: [
+              { path: 'pending-requests', component: PendingComponent },
+              { path: 'approved-requests', component: ApprovedComponent },
+              { path: 'rejected-requests', component: RejectedComponent },
+              { path: '', redirectTo: 'pending-requests', pathMatch: 'full' }
+            ]
           },
           {
             path: "manage-files",

@@ -123,7 +123,7 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
       if (confirmed) {
         this.fileService.deleteFile(fileId).subscribe({
           next: () => {
-            this.files = this.files.filter(file => file.id !== fileId);
+            this.files = this.files.filter(file => file.fileNo !== fileId);
             this.dataSource.data = [...this.files]; // Refresh the table
             this.snackBar.open('File deleted successfully.', 'Close', { duration: 3000 });
             // this.location.reload();
@@ -194,7 +194,7 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
           this.dataSource.data = [...this.files]; // Update the dataSource
         }
         // Optionally, send the updated file to the server
-        this.fileService.updateFile(file.id, updatedFile).subscribe(
+        this.fileService.updateFile(file.fileNo, updatedFile).subscribe(
           {
           next: () => {
             this.snackBar.open('File updated successfully.', 'Close', { duration: 3000 });

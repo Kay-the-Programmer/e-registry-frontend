@@ -1,24 +1,16 @@
 .dashboard-container {
   width: 1050px;
-  /*padding: 20px;*/
-  /*background-color: #f9f9f9;*/
-}
-mat-toolbar {
-  width: 100%;
-}
-.dashboard-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #3f51b5;
-  text-align: center;
-}
 
+}
+h2 {
+  color: #005cbb;
+}
 .card-container {
   width: 1050px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 0;
+  background-color: rgba(215, 227, 255, 0.08);
 
 }
 
@@ -30,76 +22,26 @@ mat-toolbar {
   justify-content: center;
   text-align: center;
   border: none;
-  border-radius: 0;
- background-color: transparent;
+  border-radius: 25px;
+  background-color: rgba(215, 227, 255, 0.08);
 }
 
-.dashboard-card:hover {
-  background-color: #FFF;
-}
 nav {
-  padding:10px 20px;
-}
-table {
-  width: 100%;
-}
-
-tr.example-detail-row {
-  height: 0;
+  padding:20px 20px;
+  height: 50px;
+  background-color: rgba(215, 227, 255, 0.08);
+  /*background-color: #d7e3ff;*/
 }
 
-tr.example-element-row:not(.example-expanded-row) {
-  background-color: whitesmoke;
+.filter.no-space .mat-form-field-wrapper {
+  padding-bottom: 0; /* Remove bottom padding */
 }
-
-tr.example-element-row:not(.example-expanded-row):hover {
-  background-color: #FFF;
-  cursor: pointer;
-}
-
-tr.example-element-row:not(.example-expanded-row):active {
-  background: #FFF
-}
-
-.example-element-row td {
-  border-bottom-width: 0;
-}
-
-.example-element-detail {
-  overflow: hidden;
-  display: flex;
-}
-
-.example-element-diagram {
-  min-width: 80px;
-  border: 2px solid black;
-  padding: 8px;
-  font-weight: lighter;
-  margin: 8px 0;
-  height: 104px;
-}
-
-.example-element-symbol {
-  font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
-}
-
-.example-element-description {
-  padding: 16px 10px;
-  border-top: solid 1px lightgrey;
-  width: 100%;
-  background-color: rgba(0, 17, 17, 0.02);
-}
-.example-element-description-attribution {
-  opacity: 0.5;
-}
-mat-accordion {
-  margin-bottom: 10px;
+mat-expansion-panel {
+  box-shadow: none;
 }
 .actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   gap: 10px;
   padding-top: 15px;
   border-top: solid 1px lightgrey;
@@ -113,40 +55,90 @@ button.re {
   transition: background-color 0.3s ease;
 }
 
-button.re mat-icon {
+button.back fa-icon {
+  color: #005cbb;
   font-size: 20px; /* Adjust icon size */
+  transition: background-color 0.3s ease-in-out;
 }
 
-button.ap {
-  color: #4caf50;
+button.back {
+  background-color: #e6ecf8;
+  width: 50px;
+  padding: 0;
+}
+button.cancel {
+  border-radius: 25px;
+  color: #ff4d4d;
+}
+button.cancel:hover {
+  background-color: #e6ecf8;
+
+}
+button.ok {
+  background-color: #e6ecf8;
+}
+button.approved, button.rejected {
+  color: #005cbb;
+  background-color:transparent;
   font-weight: bold;
   border: none;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 25px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.5s ease-in-out;
+}
+button.approved:hover, button.rejected:hover {
+  color: #005cbb;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: #e6ecf8;
+
+}
+button.ap, button.ok {
+  color: #005cbb;
+  background-color: #e6ecf8;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
 }
 
 button.ap:hover {
   transform: scale(1.1); /* Slightly enlarges the button */
 }
-button.re:hover {
-  transform: scale(0.95); /* Shrinks the button */
-  transition: transform 0.5s ease-in-out; /* Smooth transition effect */
+button.re:hover, button.back:hover {
+  background-color: #e6ecf8;
 }
 
-
 .detail .left {
-  border-bottom: solid 1px lightgrey;
   border-right: solid 1px lightgrey;
   padding: 10px;
 }
 
 .detail .right {
   padding: 10px;
-  border-bottom: solid 1px lightgrey;
 }
 .detail .header {
- border-bottom: solid 1px #4caf50;
-  font-weight: bold;
+ border-bottom: solid 1px lightgrey;
+  color: #005cbb;
+  font-weight: 500;
+}
+button {
+  padding: 10px 20px;
+}
+mat-expansion-panel.mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+mat-expansion-panel.mat-expansion-panel {
+  border-top: solid 1px lightgrey;
+  border-radius: 0;
+  background-color: rgba(215, 227, 255, 0.08);
+}
+.active-link {
+  background-color: #ff9800; /* Highlight color */
+  color: white;
 }

@@ -1,21 +1,22 @@
 .m-logo {
-  height: 45px;
-  width: 50px;
+  height: 37px;
+  width: 42px;
   margin: 0;
   padding: 0;
 }
 .a-logo {
-  height: 45px;
+  height: 4px;
 }
 fa-icon {
   width: 100px;
   height: 100px;
   font-size: 25px;
-  padding: 15px;
-  border-radius: 15px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  color: #005cbb;
 }
 fa-icon:hover{
-  background-color: rgba(211, 211, 211, 0.35);
+  background-color: #e6ecf8;
   cursor: pointer;
 }
 .navbar-brand.e-registry {
@@ -64,4 +65,5 @@ fa-icon:hover{
 }
 nav {
   border-bottom: 1px solid lightgrey;
+  background-color: rgba(215, 227, 255, 0.08);
 }

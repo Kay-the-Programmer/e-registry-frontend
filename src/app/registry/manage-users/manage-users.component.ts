@@ -119,52 +119,6 @@ export class ManageUsersComponent implements OnInit{
     });
   }
 
-  // Open Edit User Dialog
-  // openEditDialog(user: any): void {
-  //   const dialogRef = this.dialog.open(CreateUserComponent, {
-  //     width: '600px',
-  //     data: { mode: 'edit', user },
-  //   });
-  //
-  //   dialogRef.afterClosed().subscribe((updatedUser) => {
-  //     if (updatedUser) {
-  //       this.http
-  //         .put(
-  //           `http://localhost:3000/auth/updateAccount/${updatedUser.empNumber}`,
-  //           updatedUser
-  //         )
-  //         .subscribe({
-  //           next: () => {
-  //             this.snackBar.open('User updated successfully!', 'Close', {
-  //               duration: 3000,
-  //             });
-  //             this.fetchUsers(); // Refresh the list
-  //           },
-  //           error: () => {
-  //             this.snackBar.open('Failed to update user.', 'Close', {
-  //               duration: 3000,
-  //             });
-  //           },
-  //         });
-  //     }
-  //   });
-  // }
-
-  // deleteUser(user: any): void {
-  //   console.log(user)
-  //   this.http
-  //     .delete(`http://localhost:3000/auth/deleteAccount/${user.id}`)  // Corrected the URL interpolation
-  //     .subscribe({
-  //       next: () => {
-  //         this.snackBar.open('User deleted successfully!', 'Close', { duration: 3000 });
-  //         this.fetchUsers(); // Refresh the list
-  //       },
-  //       error: () => {
-  //         this.snackBar.open('Failed to delete user.', 'Close', { duration: 3000 });
-  //       },
-  //     });
-  // }
-
   deleteUserWithConfirmation(user: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',

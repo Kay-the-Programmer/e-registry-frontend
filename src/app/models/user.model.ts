@@ -1,11 +1,12 @@
 export interface UserProfile {
+  id: number;
   fName: string;
   lName: string;
   email: string;
-  password: string;
   role: string;
-  userDept: string;
-  empNumber: string;
-  departmentId: number;
   position: string;
+  empNumber: string;
+  createdAt: string;
+  updatedAt: string;
+  departmentId: number;
 }
