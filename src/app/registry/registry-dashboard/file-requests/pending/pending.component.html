@@ -1,0 +1,49 @@
+<div class="flex-grow-1 req">
+  <ng-container *ngIf="fileRequests.length > 0; else noRequests">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let request of fileRequests">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ request.requestedBy.fName }} {{ request.requestedBy.lName }}
+          </mat-panel-title>
+          <mat-panel-description>
+            The {{ request.requestedBy.position }} requested to use the file {{ request.file.fileNo }}.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="panel-content">
+          <div class="w-100 d-flex detail">
+            <div class="w-50 left">
+              <h3 class="header">Request sender details</h3>
+              <p><strong>Name:</strong> {{ request.requestedBy.fName }} {{ request.requestedBy.lName }}</p>
+              <p><strong>Position:</strong> {{ request.requestedBy.position }}</p>
+              <p><strong>Department:</strong> {{ request.userDepartment.departmentName }}</p>
+              <p><strong>Email:</strong> {{ request.requestedBy.email }}</p>
+              <h3 class="header">Request details</h3>
+              <p><strong>Reason:</strong> {{ request.reason }}</p>
+              <p><strong>Comment:</strong> {{ request.comment || 'No comment' }}</p>
+            </div>
+            <div class="w-50 right">
+              <h3 class="header">Requested file details</h3>
+              <p><strong>Subject:</strong> {{ request.file.fileSubject }}</p>
+              <p><strong>Title:</strong> {{ request.file.fileTitle }}</p>
+              <p><strong>Department:</strong> {{ request.fileDepartment.departmentName }}</p>
+              <div class="actions">
+                <button  class="re rounded-5" mat-button (click)="onConfirmRejection(request.id)">Reject</button>
+                <button  class="ap rounded-5" mat-button (click)="openDialog(request.id)">Approve</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+
+  <!-- No Requests Available Message -->
+  <ng-template #noRequests>
+    <div class="no-requests w-100 text-center">
+      <p class="text-muted mt-4">No file requests available at the moment.</p>
+    </div>
+  </ng-template>
+</div>

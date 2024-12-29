@@ -1,0 +1,140 @@
+.dashboard-container {
+  width: 1050px;
+
+}
+h2 {
+  color: #005cbb;
+}
+.card-container {
+  width: 1050px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0;
+  background-color: rgba(215, 227, 255, 0.08);
+
+}
+
+.dashboard-card {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(215, 227, 255, 0.08);
+}
+
+nav {
+  padding:20px 20px;
+  height: 50px;
+  background-color: rgba(215, 227, 255, 0.08);
+  /*background-color: #d7e3ff;*/
+}
+
+.filter.no-space .mat-form-field-wrapper {
+  padding-bottom: 0; /* Remove bottom padding */
+}
+mat-expansion-panel {
+  box-shadow: none;
+}
+.actions {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: solid 1px lightgrey;
+}
+button.re {
+  color: #ff4d4d;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.back fa-icon {
+  color: #005cbb;
+  font-size: 20px; /* Adjust icon size */
+  transition: background-color 0.3s ease-in-out;
+}
+
+button.back {
+  background-color: #e6ecf8;
+  width: 50px;
+  padding: 0;
+}
+button.cancel {
+  border-radius: 25px;
+  color: #ff4d4d;
+}
+button.cancel:hover {
+  background-color: #e6ecf8;
+
+}
+button.ok {
+  background-color: #e6ecf8;
+}
+button.approved, button.rejected {
+  color: #005cbb;
+  background-color:transparent;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+button.approved:hover, button.rejected:hover {
+  color: #005cbb;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: #e6ecf8;
+
+}
+button.ap, button.ok {
+  color: #005cbb;
+  background-color: #e6ecf8;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button.ap:hover {
+  transform: scale(1.1); /* Slightly enlarges the button */
+}
+button.re:hover, button.back:hover {
+  background-color: #e6ecf8;
+}
+
+.detail .left {
+  border-right: solid 1px lightgrey;
+  padding: 10px;
+}
+
+.detail .right {
+  padding: 10px;
+}
+.detail .header {
+  border-bottom: solid 1px lightgrey;
+  color: #005cbb;
+  font-weight: 500;
+}
+button {
+  padding: 10px 20px;
+}
+mat-expansion-panel.mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+mat-expansion-panel.mat-expansion-panel {
+  border-top: solid 1px lightgrey;
+  border-radius: 0;
+  background-color: rgba(215, 227, 255, 0.08);
+}
