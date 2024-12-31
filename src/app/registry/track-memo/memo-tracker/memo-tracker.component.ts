@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TimelineComponent} from "../timeline/timeline.component";
 import {MatToolbar} from "@angular/material/toolbar";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import {faAngleRight} from "@fortawesome/free-solid-svg-icons";
+import {MemoService} from "../../../services/memo-service/memo.service";
+import {ActivatedRoute, RouterOutlet} from "@angular/router";
+import {MemosListComponent} from "../memos-list/memos-list.component";
 
 @Component({
   selector: 'app-memo-tracker',
   imports: [
     TimelineComponent,
     MatToolbar,
-    FaIconComponent
+    FaIconComponent,
+    RouterOutlet,
+    MemosListComponent
   ],
   templateUrl: './memo-tracker.component.html',
   standalone: true,
   styleUrl: './memo-tracker.component.css'
 })
-export class MemoTrackerComponent {
+export class MemoTrackerComponent implements OnInit{
 
   memoTimeline = [
     {
@@ -44,5 +48,31 @@ export class MemoTrackerComponent {
     },
   ];
 
-  protected readonly faAngleRight = faAngleRight;
+  memo: any = {}; // Store memo data
+  errorMessage: string = ''; // For storing error messages
+
+  constructor(
+    private memoService: MemoService, // MemoService injection
+    private route: ActivatedRoute // To get the id from route params
+  ) {}
+
+  ngOnInit(): void {
+    const memoId = this.route.snapshot.paramMap.get('id'); // Get memo id from route
+    if (memoId) {
+      this.fetchMemoById(Number(memoId)); // Fetch memo data by id
+    }
+  }
+
+  // Fetch memo by id
+  fetchMemoById(id: number): void {
+    this.memoService.getMemoById(id).subscribe(
+      (response) => {
+        this.memo = response; // Store fetched memo data
+      },
+      (error) => {
+        this.errorMessage = 'Error fetching memo: ' + error.message;
+        console.error('Error:', error); // Log error
+      }
+    );
+  }
 }

@@ -82,7 +82,7 @@ export class UserProfileComponent implements OnInit {
       console.log(decodedToken)
 
       // Making the HTTP request with the token in the Authorization header and user email
-      this.http.get<UserProfile>(`http://localhost:3000/auth/getUserByEmail${userEmail}`, {
+      this.http.get<UserProfile>(`http://localhost:3000/auth/getUserByEmail/${userEmail}`, {
         headers: new HttpHeaders({
           Authorization: `Bearer ${userToken}`,
         }),

@@ -1,19 +1,13 @@
-<div class="manage-users-container"  *ngIf="files.length > 0">
-  <mat-toolbar class="d-flex flex-row justify-content-between">
-    <!-- Pagination -->
-    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons
-                   [length]="length"
-                   (page)="handlePageEvent($event)"
-    ></mat-paginator>
-
-    <button mat-raised-button color="primary" (click)="openCreateFileDialog()">Create file
+<div class="manage-users-container" >
+  <div class="d-flex toolbar flex-row justify-content-between">
+    <h2 class="mb-0">Manage files</h2>
+    <button mat-raised-button color="primary" (click)="openCreateFileDialog()">
+      Create file
     </button>
-  </mat-toolbar>
+  </div>
   <mat-divider></mat-divider>
-
   <!-- Table with Sorting and Pagination -->
-  <table mat-table [dataSource]="dataSource" matSort class="mat-table">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-table"  *ngIf="files.length > 0">
     <!-- Column: file Number -->
     <ng-container matColumnDef="fileNo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
@@ -55,12 +49,16 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <!-- No Files Message -->
+  <div *ngIf="files.length === 0 " class="no-files container-fluid d-flex flex-column justify-content-center align-items-center gap-2">
+    <p>No files available at the moment, you can create files to view them....</p>
+  </div>
+  <!-- loading spinner -->
+  <div *ngIf="isFetching" class="no-files container-fluid d-flex flex-column justify-content-center align-items-center gap-2">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>
 
 
-  <!-- No Files Message -->
-  <div *ngIf="files.length === 0" class="no-files">
-    <mat-spinner></mat-spinner>
-    <p>Loading files...</p>
-  </div>
+
 

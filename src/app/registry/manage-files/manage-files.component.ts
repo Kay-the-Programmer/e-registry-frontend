@@ -47,7 +47,7 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort!: MatSort;
 
   length!: number;
-
+  isFetching = true;
   pageEvent!: PageEvent;
   pageSize = 10;
   pageIndex = 0;
@@ -92,15 +92,22 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
   }
 
   loadFiles(): void {
-    this.fileService.getAllFiles().subscribe((data) => {
+    this.fileService.getAllFiles().subscribe(
+      (data) => {
       this.files = data;
+      this.isFetching = false;
+
       this.dataSource = new MatTableDataSource<File>(this.files); // Reinitialize datasource
       if (this.paginator && this.sort) {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
       console.log(this.files);
-    });
+    }, (error) => {
+        this.isFetching = false;
+        console.log(error);
+      });
+
     // Fetch all departments
     this.fileService.getAllDepartments().subscribe((departments) => {
       departments.forEach(department => {
@@ -210,7 +217,7 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
   openFile(fileNo: string) {
     this.fileService.getFileById(fileNo).subscribe({
       next: () => {
-        this.router.navigate(['/registry/dashboard/file-details', fileNo]);
+        this.router.navigate(['/registry/dashboard/manage-files/file-details', fileNo]);
       },
       error: () => {
         this.snackBar.open('Failed to open file.', 'Close', { duration: 1000 });

@@ -9,11 +9,11 @@
   <mat-card class="file-details-card">
     <div class="d-flex ft flex-row w-100">
       <div class="w-100 st flex-grow-1 p-3">
-        <mat-card-title class="mb-2">File Details</mat-card-title>
+        <mat-card-title class="mb-2">File details</mat-card-title>
         <p><strong>File ID:</strong> {{ file.fileNo }}</p>
         <p><strong>File Title:</strong> {{ file.fileTitle }}</p>
         <p><strong>Subject:</strong> {{ file.fileSubject }}</p>
-        <p><strong>Department:</strong> {{ file.Department.departmentName }}</p>
+        <p><strong>Department:</strong> {{ file.department.departmentName }}</p>
         <p><strong>Memos:</strong> {{ file.memos.length }}</p>
       </div>
       <div class="d-flex xt align-content-center justify-content-center">
@@ -77,8 +77,8 @@
       </table>
     </div>
 
-    <div *ngIf="file.memos.length === 0">
-      <p>No memos available for this file.</p>
+    <div *ngIf="file.memos.length === 0" class="w-100 p-2 d-flex justify-content-center">
+      <p class="mb-0">No memos available for this file.</p>
     </div>
   </mat-card>
 </div>

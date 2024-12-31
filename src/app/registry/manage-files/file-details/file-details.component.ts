@@ -49,6 +49,7 @@ export class FileDetailsComponent implements OnInit {
     this.http.get(`http://localhost:3000/files/get-file-by-id/${fileID}`).subscribe({
       next: (data) => {
         this.file = data;
+        console.log(this.file);
         this.isLoading = false;
       },
       error: (error) => {

@@ -124,11 +124,14 @@ export const routes: Routes = [
           {
             path: "track-memo",
             component: TrackMemoComponent,
+          },
+          {
+            path: "analytics",
+            component: AnalyticsComponent,
           }
         ]
       },
     ]
-
   },
   {path: '', redirectTo: '/auth', pathMatch: 'full'}
 ];

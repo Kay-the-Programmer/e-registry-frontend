@@ -8,9 +8,9 @@
 }
 
 .file-details-card {
-  min-width: 1000px;
+  min-width: 1050px;
   margin: 0 auto;
-  background-color: transparent;
+  background-color: #f7f8fa;
   border-radius: 0;
   border-right: solid 1px #ddd;
   border-bottom: solid 1px #ddd;

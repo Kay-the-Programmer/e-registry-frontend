@@ -4,12 +4,17 @@ th {
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f7f8fa;
   cursor: pointer;
 }
 
+.toolbar {
+  background-color: #f7f8fa;
+  padding: 10px ;
+}
+
 .manage-users-container {
-  max-width: 1000px;
+  width: 1050px;
   min-width: 1000px;
   margin: 0 auto;
   background-color: #ffffff;
@@ -45,4 +50,10 @@ table {
 
 .add-user-btn {
   margin-top: 16px;
+}
+
+.no-files {
+  min-width: 1000px;
+  padding: 20px 0;
+
 }
