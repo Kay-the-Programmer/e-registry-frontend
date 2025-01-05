@@ -25,6 +25,9 @@ import {EditFileDialogComponent} from "./edit-file-dialog/edit-file-dialog.compo
 import {JsonPipe} from '@angular/common';
 import {DeleteFileConfirmationComponent} from "./delete-file-confirmation/delete-file-confirmation.component";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {MatCard, MatCardTitle} from "@angular/material/card";
+import {faFileShield, faFolderClosed, faFolderOpen, faFolderPlus, faUnlockAlt} from "@fortawesome/free-solid-svg-icons";
+import {RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-manage-files',
@@ -35,7 +38,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatTableModule, HttpClientModule, FaIconComponent, RouterModule,
     MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderRow,
     MatHeaderRowDef, MatRow, MatRowDef, MatSort, MatSortHeader, MatTable,
-    MatToolbar, MatHeaderCellDef, JsonPipe, DeleteFileConfirmationComponent, MatProgressSpinner],
+    MatToolbar, MatHeaderCellDef,RouterLinkActive, JsonPipe, DeleteFileConfirmationComponent, MatProgressSpinner, MatCard, MatCardTitle],
   templateUrl: './manage-files.component.html',
   styleUrl: './manage-files.component.css'
 })
@@ -116,37 +119,6 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
     });
   }
 
-  deleteFile(fileId: string): void {
-    const dialogRef = this.dialog.open(DeleteFileConfirmationComponent, {
-      width: '400px',
-      panelClass: 'custom-dialog-container',
-      data: {
-        title: 'Confirm Deletion',
-        message: 'Are you sure you want to delete this file? This action cannot be undone.',
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((confirmed) => {
-      if (confirmed) {
-        this.fileService.deleteFile(fileId).subscribe({
-          next: () => {
-            this.files = this.files.filter(file => file.fileNo !== fileId);
-            this.dataSource.data = [...this.files]; // Refresh the table
-            this.snackBar.open('File deleted successfully.', 'Close', { duration: 3000 });
-            // this.location.reload();
-            window.location.reload();
-          },
-          error: (err) => {
-            const errorMessage =
-              err.status === 500
-                ? 'An error occurred on the server. Please try again later.'
-                : err.error?.message || 'Failed to delete file.';
-            this.snackBar.open(errorMessage, 'Close', { duration: 10000 });
-          },
-        });
-      }
-    });
-  }
 
   openCreateFileDialog(): void {
     const dialogRef = this.dialog.open(CreateFileDialogComponent, {
@@ -185,34 +157,6 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
     return this.departmentMap[departmentId] || 'Loading...';
   }
 
-  editFile(file: File): void {
-    const dialogRef = this.dialog.open(EditFileDialogComponent, {
-      width: '500px',
-      data: { file, departments: this.departments } // Pass file and department data to the dialog
-    });
-    console.log("Initial File", file)
-
-    dialogRef.afterClosed().subscribe((updatedFile) => {
-      if (updatedFile) {
-        // Update the file in the dataSource
-        const fileIndex = this.files.findIndex((f) => f.fileNo === file.fileNo);
-        if (fileIndex > -1) {
-          this.files[fileIndex] = { ...this.files[fileIndex], ...updatedFile };
-          this.dataSource.data = [...this.files]; // Update the dataSource
-        }
-        // Optionally, send the updated file to the server
-        this.fileService.updateFile(file.fileNo, updatedFile).subscribe(
-          {
-          next: () => {
-            this.snackBar.open('File updated successfully.', 'Close', { duration: 3000 });
-          },
-          error: () => {
-            this.snackBar.open('Failed to update file.', 'Close', { duration: 3000 });
-          }
-        });
-      }
-    });
-  }
 
   openFile(fileNo: string) {
     this.fileService.getFileById(fileNo).subscribe({
@@ -224,4 +168,10 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
       }
     });
   }
+
+  protected readonly faFolderClosed = faFolderClosed;
+  protected readonly faUnlockAlt = faUnlockAlt;
+  protected readonly faFileShield = faFileShield;
+  protected readonly faFolderOpen = faFolderOpen;
+  protected readonly faFolderPlus = faFolderPlus;
 }

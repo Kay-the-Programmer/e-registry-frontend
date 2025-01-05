@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {
+  faBuilding,
   faChartSimple,
   faCircleUser, faDashboard,
   faFileLines, faFolderPlus,
@@ -47,4 +48,6 @@ export class RegistrySidebarComponent implements OnInit{
   ngOnInit(): void {
     this.fetchUserName();
   }
+
+  protected readonly faBuilding = faBuilding;
 }

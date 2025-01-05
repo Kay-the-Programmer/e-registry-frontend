@@ -1,15 +1,25 @@
 mat-form-field {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom:5px;
 }
 h2 {
   display: block;
   width: 100%;
   padding: 0;
-  margin-bottom: 5px;
-
+  margin-bottom: 20px;
+  color: #005cbb;
 }
-
+mat-dialog-title{
+  color: #005cbb;
+}
 button {
   border-radius: 25px;
+  padding: 0 20px;
+}
+button.cancel {
+  color: #f44336;
+}
+
+button.cancel:hover {
+  background-color: rgba(244, 67, 54, 0.09);
 }

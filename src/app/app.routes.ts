@@ -26,6 +26,8 @@ import {UserFilesComponent} from "./user/user-files/user-files.component";
 import {PendingComponent} from "./registry/registry-dashboard/file-requests/pending/pending.component";
 import {ApprovedComponent} from "./registry/registry-dashboard/file-requests/approved/approved.component";
 import {RejectedComponent} from "./registry/registry-dashboard/file-requests/rejected/rejected.component";
+import {FilesListComponent} from "./registry/manage-files/files-list/files-list.component";
+import {AccessControlComponent} from "./registry/manage-files/access-control/access-control.component";
 
 export const routes: Routes = [
   {
@@ -85,53 +87,58 @@ export const routes: Routes = [
   },
   {
     path: "registry",
-    component: RegistryComponent,
+    component: RegistryBoardComponent,
+
     children: [
       {
-        path: "dashboard",
-        component: RegistryBoardComponent,
+        path: "file-requests",
+        component: RegistryDashboardComponent,
         children: [
-          {
-            path: "registry-dashboard",
-            component: RegistryDashboardComponent,
-            children: [
-              { path: 'pending-requests', component: PendingComponent },
-              { path: 'approved-requests', component: ApprovedComponent },
-              { path: 'rejected-requests', component: RejectedComponent },
-              { path: '', redirectTo: 'pending-requests', pathMatch: 'full' }
-            ]
-          },
-          {
-            path: "manage-files",
-            component: ManageFilesComponent,
-          },
+          { path: 'pending-requests', component: PendingComponent },
+          { path: 'approved-requests', component: ApprovedComponent },
+          { path: 'rejected-requests', component: RejectedComponent },
+          { path: '', redirectTo: 'pending-requests', pathMatch: 'full' }
+        ],
+      },
+      {
+        path: "manage-users",
+        component: ManageUsersComponent,
+      },
+      {
+        path: "manage-files",
+        component: ManageFilesComponent,
+        children: [
           {
             path: 'file-details/:id',
             component: FileDetailsComponent
           },
           {
-            path: 'memo-details/:id',
-            component: MemoDetailsComponent
+            path: 'all-files',
+            component: FilesListComponent,
           },
           {
-            path: "manage-users",
-            component: ManageUsersComponent,
+            path: 'access-control',
+            component: AccessControlComponent,
           },
           {
-            path: "user-profile",
-            component: UserProfileComponent,
-          },
-          {
-            path: "track-memo",
-            component: TrackMemoComponent,
-          },
-          {
-            path: "analytics",
-            component: AnalyticsComponent,
+            path: '', redirectTo: 'all-files', pathMatch: 'full'
           }
         ]
       },
+      {
+        path: "user-profile",
+        component: UserProfileComponent,
+      },
+      {
+        path: "track-memo",
+        component: TrackMemoComponent,
+      },
+      {
+        path: "analytics",
+        component: AnalyticsComponent,
+      },
     ]
   },
-  {path: '', redirectTo: '/auth', pathMatch: 'full'}
+  {path: '', redirectTo: '/auth', pathMatch: 'full'},
+
 ];

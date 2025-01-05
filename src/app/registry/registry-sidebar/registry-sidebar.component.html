@@ -1,37 +1,49 @@
 <ul class="nav flex-column gap-1 p-2">
   <li class="nav-item user" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-      [routerLink]="['/registry/dashboard/registry-dashboard']">
+      [routerLink]="['/registry/file-requests']">
     <fa-icon [icon]="faDashboard"></fa-icon>
     <a class="nav-link" aria-current="page">Dashboard</a>
   </li>
   <li class="nav-item user" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="/registry/dashboard/user-profile">
+      routerLink="/registry/user-profile">
     <fa-icon [icon]="faCircleUser"></fa-icon>
     <a class="nav-link" aria-current="page">{{ userName }}</a>
   </li>
   <li class="nav-item user" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="/registry/dashboard/track-memo">
+      routerLink="/registry/track-memo">
     <fa-icon [icon]="faMapLocationDot"></fa-icon>
     <a class="nav-link" aria-current="page">Track memo</a>
   </li>
   <li class="nav-item files" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="/registry/dashboard/manage-files">
+      routerLink="/registry/manage-files">
     <fa-icon [icon]="faFolderPlus"></fa-icon>
     <a class="nav-link">Manage files</a>
   </li>
   <li class="nav-item memos" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="/registry/dashboard/manage-users">
+      routerLink="/registry/manage-users">
     <fa-icon [icon]="faUsers"></fa-icon>
     <a class="nav-link">Manage users</a>
   </li>
   <li class="nav-item analytics" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="/registry/dashboard/analytics">
+      routerLink="">
+    <fa-icon [icon]="faBuilding"></fa-icon>
+    <a class="nav-link">Departments</a>
+  </li>
+  <li class="nav-item analytics" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/analytics">
+    <fa-icon [icon]="faChartSimple"></fa-icon>
+    <a class="nav-link">Analytics</a>
+  </li>
+  <li class="nav-item analytics" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/registry/analytics">
     <fa-icon [icon]="faChartSimple"></fa-icon>
     <a class="nav-link">Analytics</a>
   </li>

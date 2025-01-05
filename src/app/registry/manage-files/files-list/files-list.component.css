@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 0;
+}
+mat-form-field  {
+}
+h3 {
+  margin-bottom: 0;
+  padding: 10px;
+  color: #515153;
+  display: block;
+  background-color: rgba(215, 227, 255, 0.05);
+}
+
+tr.example-element-row:hover {
+  background: whitesmoke;
+  cursor: pointer;
+}

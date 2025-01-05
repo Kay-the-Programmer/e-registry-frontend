@@ -3,16 +3,20 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import {DrawerService} from "../user-service/user-service.service";
 import {LeftSidenavComponent} from "../left-sidenav/left-sidenav.component";
-import {MainContentComponent} from "../../main-content/main-content.component";
 import {HomeComponent} from "../home/home.component";
-import {RouterOutlet} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 import {HeaderComponent} from "../header/header.component";
+import {faBell, faSignOut} from "@fortawesome/free-solid-svg-icons";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {FormsModule} from "@angular/forms";
+import {MatTooltip} from "@angular/material/tooltip";
+import {NgOptimizedImage} from "@angular/common";
 
 
 @Component({
   selector: 'app-dashboard-container',
   standalone: true,
-    imports: [MatButtonModule, MatSidenavModule, LeftSidenavComponent, MainContentComponent, HomeComponent, RouterOutlet, HeaderComponent],
+  imports: [MatButtonModule, MatSidenavModule, LeftSidenavComponent, HomeComponent, RouterOutlet, HeaderComponent, FaIconComponent, FormsModule, MatTooltip, NgOptimizedImage, RouterLink],
   templateUrl: './dashboard-container.component.html',
   styleUrl: './dashboard-container.component.css',
   // providers: [DrawerService],
@@ -55,4 +59,7 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit{
       this.isDrawerOpened = !this.isDrawerOpened;
     });
   }
+
+    protected readonly faSignOut = faSignOut;
+    protected readonly faBell = faBell;
 }

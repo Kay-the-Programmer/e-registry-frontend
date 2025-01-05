@@ -1,0 +1,94 @@
+/* General container styling */
+.container {
+  width: 1050px;
+  margin: 0 ;
+  padding: 10px;
+  background-color: rgba(215, 227, 255, 0.41);
+  border-radius: 0;
+}
+.access-control {
+  border-bottom: solid 1px #ddd;
+}
+/* Form styling */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+mat-form-field {
+  flex: 1 1 calc(33% - 16px);
+  min-width: 200px;
+}
+
+/* Button styling */
+button {
+  margin: 5px 0;
+  border-radius: 25px;
+}
+
+button[mat-flat-button] {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+button[mat-flat-button][color="primary"] {
+  background-color: #005cbb;
+  color: white;
+}
+
+button[mat-flat-button][color="accent"] {
+  background-color: #28a745;
+  color: white;
+}
+
+button[mat-flat-button][color="warn"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Filter input styling */
+.filter {
+  margin: 20px 0;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  background-color: #e3e3e3;
+}
+
+.mat-cell, .mat-header-cell {
+  padding: 12px;
+  text-align: left;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.mat-row:hover {
+  background-color: #dff0d8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  mat-form-field {
+    flex: 1 1 100%;
+    min-width: unset;
+  }
+
+  button {
+    width: 100%;
+  }
+}

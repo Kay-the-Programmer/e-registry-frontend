@@ -5,4 +5,7 @@ export interface File {
   fileTitle: string;
   fileSubject: string;
   departmentId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  department: Department;
 }

@@ -117,20 +117,15 @@ export class AuthComponent {
 
 
     switch (role) {
-      case 'admin':
-        this.router.navigate(['/registry/dashboard/registry-dashboard']);
+      case 'admin' || 'Admin':
+        this.router.navigate(['/registry/file-requests']);
         break;
-      case 'Admin':
-        this.router.navigate(['/registry/dashboard/registry-dashboard']);
-        break;
-      case 'user':
-        this.router.navigate(['/user/dashboard/home']);
-        break;
-      case 'User':
-        this.router.navigate(['/user/dashboard/home']);
+      case 'user' || 'User':
+        this.router.navigate(['/user/dashboard/compose']);
         break;
       default:
         this.router.navigate(['/']);
+        window.location.reload();
         break;
     }
   }

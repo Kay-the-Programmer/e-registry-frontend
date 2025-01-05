@@ -1,6 +1,6 @@
 <div class="w-100 p-3">
-  <h2 mat-dialog-title>Create File</h2>
-  <form [formGroup]="createFileForm" class="px-2">
+  <h2 mat-dialog-title>Create file</h2>
+  <form [formGroup]="createFileForm">
     <!-- File ID Field -->
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>File ID</mat-label>
@@ -47,7 +47,7 @@
 
     <!-- Actions -->
     <div mat-dialog-actions class="d-flex justify-content-end">
-      <button mat-button (click)="onCancel()">Cancel</button>
+      <button class="cancel" mat-button (click)="onCancel()">Cancel</button>
       <button mat-flat-button color="primary" (click)="onSave()" [disabled]="!createFileForm.valid">
         Save
       </button>

@@ -12,7 +12,10 @@ tr:hover {
   background-color: #f7f8fa;
   padding: 10px ;
 }
-
+.cards {
+  background-color: #f7f8fa;
+  padding: 5px 5px ;
+}
 .manage-users-container {
   width: 1050px;
   min-width: 1000px;
@@ -47,7 +50,24 @@ button {
 table {
   width: 100%;
 }
-
+.cards {
+  border-bottom: solid 1px #ddd;
+  padding: 5px 10px;
+}
+.cards a , button.create {
+  color: #005cbb;
+  padding: 0 20px;
+  border-radius: 25px;
+  background-color: #FFF;
+}
+a.active {
+  background-color: #337ab7;
+  color: #f9f9f9;
+}
+.cards a:hover, button.create:hover {
+  background-color: rgba(51, 122, 183, 0.02);
+  color: #337ab7;
+}
 .add-user-btn {
   margin-top: 16px;
 }
@@ -55,5 +75,8 @@ table {
 .no-files {
   min-width: 1000px;
   padding: 20px 0;
+}
 
+h2{
+  color: #005cbb;
 }
