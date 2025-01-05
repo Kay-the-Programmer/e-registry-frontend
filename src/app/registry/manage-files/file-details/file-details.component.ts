@@ -11,13 +11,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons";
-import {HttpClientModule, HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 
 @Component({
   selector: 'app-file-details',
   standalone: true,
-  imports: [RouterModule, HttpClientModule, NgxChartsModule, MatSortModule, MatPaginatorModule, CommonModule, MatCardModule, MatTableModule, MatProgressSpinnerModule, MatIconModule, PieChartModule, FaIconComponent],
+  imports: [
+   NgxChartsModule, MatSortModule, MatPaginatorModule, CommonModule, MatCardModule, MatTableModule, MatProgressSpinnerModule, MatIconModule, PieChartModule, FaIconComponent],
   templateUrl: './file-details.component.html',
   styleUrl: './file-details.component.css'
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserProfile } from '../../models/user.model';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +22,6 @@ import {MatTooltip} from "@angular/material/tooltip";
   selector: 'app-user-profile',
   standalone: true,
   imports: [
-    HttpClientModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,

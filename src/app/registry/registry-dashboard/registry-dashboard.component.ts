@@ -7,7 +7,7 @@ import { CommonModule } from "@angular/common";
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
-import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommentDialogComponent } from "./comment-dialog/comment-dialog.component";
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -31,7 +31,7 @@ import {RouterModule} from "@angular/router";
   standalone: true,
   imports: [
     FormsModule, MatSnackBarModule, MatFormFieldModule, MatInputModule, MatIconModule,
-    ConfirmApprovalComponent, MatButtonModule, MatExpansionModule, MatDialogModule, HttpClientModule,
+    ConfirmApprovalComponent, MatButtonModule, MatExpansionModule, MatDialogModule,
     CommonModule, RouterModule, MatCardModule, NgxChartsModule, MatToolbar, MatTable, FaIconComponent, PendingComponent, RejectedComponent, ApprovedComponent, RouterOutlet
   ],
   templateUrl: './registry-dashboard.component.html',

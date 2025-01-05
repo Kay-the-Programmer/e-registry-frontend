@@ -19,7 +19,7 @@ import {
 } from "@angular/material/table";
 import {MatSort, MatSortHeader} from "@angular/material/sort";
 import {MatToolbar} from "@angular/material/toolbar";
-import {HttpClientModule, HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EditFileDialogComponent} from "./edit-file-dialog/edit-file-dialog.component";
 import {JsonPipe} from '@angular/common';
@@ -35,7 +35,7 @@ import {RouterLinkActive} from "@angular/router";
   imports: [
     MatIconModule, MatSortModule, MatInputModule, MatListModule,
     MatPaginatorModule, MatButtonModule, MatDialogModule, CommonModule,
-    MatTableModule, HttpClientModule, FaIconComponent, RouterModule,
+    MatTableModule, FaIconComponent, RouterModule,
     MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderRow,
     MatHeaderRowDef, MatRow, MatRowDef, MatSort, MatSortHeader, MatTable,
     MatToolbar, MatHeaderCellDef,RouterLinkActive, JsonPipe, DeleteFileConfirmationComponent, MatProgressSpinner, MatCard, MatCardTitle],

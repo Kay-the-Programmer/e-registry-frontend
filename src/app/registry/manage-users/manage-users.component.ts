@@ -11,7 +11,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
-import { HttpClientModule, HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DepartmentService} from "../../services/department.service";
 import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
@@ -20,7 +20,7 @@ import {EditUserDialogComponent} from "./edit-user-dialog/edit-user-dialog.compo
 @Component({
   selector: 'app-manage-users',
   standalone: true,
-  imports: [MatCardModule, MatDividerModule, HttpClientModule, CommonModule, MatButtonModule, MatToolbar, MatTableModule,MatIconModule,
+  imports: [MatCardModule, MatDividerModule, CommonModule, MatButtonModule, MatToolbar, MatTableModule,MatIconModule,
     MatPaginator, ConfirmationDialogComponent,EditUserDialogComponent,
     MatSortModule,
     ],

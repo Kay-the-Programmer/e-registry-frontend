@@ -14,14 +14,14 @@ import {RouterLink} from "@angular/router";
 import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
   imports: [MatCardModule, NgOptimizedImage, MatFormFieldModule, MatInputModule,
     FormsModule, ReactiveFormsModule, MatButtonModule, MatIconModule, MatFormFieldModule,
-    MatProgressBarModule, CommonModule, RouterLink, HttpClientModule],
+    MatProgressBarModule, CommonModule, RouterLink,],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

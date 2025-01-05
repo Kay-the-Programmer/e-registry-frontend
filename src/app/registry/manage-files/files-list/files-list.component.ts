@@ -8,14 +8,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIcon} from "@angular/material/icon";
 import {MatSnackBarModule, MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialogModule, MatDialog} from "@angular/material/dialog";
-import {HttpClientModule, HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {DeleteFileConfirmationComponent} from "../delete-file-confirmation/delete-file-confirmation.component";
 import {EditFileDialogComponent} from "../edit-file-dialog/edit-file-dialog.component";
 import {Router} from "@angular/router";
 @Component({
   selector: 'app-files-list',
   standalone: true,
-  imports: [MatButtonModule, HttpClientModule, MatSnackBarModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIcon],
+  imports: [MatButtonModule, MatSnackBarModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIcon],
   templateUrl: './files-list.component.html',
   styleUrls: ['./files-list.component.css'],
 
