@@ -1,0 +1,22 @@
+button {
+  padding: 10px 20px;
+}
+button.cancel {
+  border-radius: 25px;
+  color: #ff4d4d;
+}
+button.cancel:hover {
+  background-color: #e6ecf8;
+
+}
+button.ok {
+  background-color: #e6ecf8;
+}
+button.ok {
+  color: #005cbb;
+  background-color: #e6ecf8;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}

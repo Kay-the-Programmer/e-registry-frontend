@@ -1,0 +1,11 @@
+mat-form-field {
+  width: 100%;
+}
+
+form {
+  padding-top: 10px;
+}
+
+button {
+  border-radius: 25px;
+}

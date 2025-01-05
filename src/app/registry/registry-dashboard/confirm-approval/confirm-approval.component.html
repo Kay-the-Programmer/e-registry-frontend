@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Approve request</h2>
+<mat-dialog-content>
+  <p>You're about to approve this request.</p>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Comment (optional)</mat-label>
+    <textarea matInput [(ngModel)]="comment"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-end gap-2 p-2">
+  <!-- Cancel button simply closes the dialog -->
+  <button class="cancel" mat-button mat-dialog-close>Cancel</button>
+
+  <!-- Ok button sends data with requestId, status, and comment -->
+  <button class="ok"
+    mat-raised-button
+    [mat-dialog-close]="{ confirmed: true, status: 'Approved', comment: comment }"
+
+  >
+    Approve
+  </button>
+</mat-dialog-actions>

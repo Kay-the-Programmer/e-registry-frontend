@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Reject request</h2>
+<mat-dialog-content>
+  <p>Please inform the sender why this request has been rejected.</p>
+  <form #commentForm="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Comment</mat-label>
+      <textarea matInput [(ngModel)]="comment" name="comment" required></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!comment" [mat-dialog-close]="{ confirmed: true, comment: comment, status: 'Rejected' }">Submit</button>
+</mat-dialog-actions>

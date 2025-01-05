@@ -1,0 +1,22 @@
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<table *ngIf="memos.length > 0" class="memo-table">
+  <thead>
+  <tr>
+    <th>Subject</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Created At</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let memo of memos">
+    <td>{{ memo.subject }}</td>
+    <td>{{ memo.from }}</td>
+    <td>{{ memo.to }}</td>
+    <td>{{ memo.createdAt | date: 'short' }}</td>
+  </tr>
+  </tbody>
+</table>
