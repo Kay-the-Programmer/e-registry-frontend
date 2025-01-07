@@ -1,20 +1,40 @@
 .compose-card {
   margin: 0;
-  max-width: 1000px;
+  max-width: 1050px;
   padding: 0;
-  width: 1000px;
-  background-color: transparent;
+  width: 1040px;
+  background-color: rgba(0, 92, 187, 0.05);
   box-shadow: none;
 }
 mat-card-header {
-  border-bottom: solid 1px #ddd;
-  border-right: solid 1px #ddd;
   display: flex;
   flex-direction: row;
   align-items: center;
   align-content: center;
+  justify-content: space-between;
   padding: 0;
   margin: 0;
+  color: #005cbb;
+  border-bottom: solid 1px #005cbb;
+}
+button {
+  border-radius: 25px;
+  margin: 0 5px;
+  padding: 0 20px;
+}
+button.request {
+  color: #005cbb;
+  background-color: transparent;
+}
+fa-icon {
+  padding-right: 5px;
+  color: #005cbb;
+}
+button.draft {
+  color: #005cbb; background-color: transparent;
+}
+button.request:hover, button.draft:hover {
+  background-color: rgba(0, 92, 187, 0.06);
 }
 mat-card-title {
   margin: 5px 0 0;
@@ -24,9 +44,9 @@ mat-card-title {
   align-content: center;
   align-items: center;
 }
+
 mat-card-content{
   border-bottom: solid 1px #ddd;
-  border-right: solid 1px #ddd;
   padding-top: 10px;
 }
 .memo-form {

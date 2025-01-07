@@ -30,7 +30,8 @@
               <p><strong>Department:</strong> {{ request.fileDepartment.departmentName }}</p>
               <div class="actions">
                 <button  class="re rounded-5" mat-button (click)="onConfirmRejection(request.id)">Reject</button>
-                <button  class="ap rounded-5" mat-button (click)="openDialog(request.id)">Approve</button>
+                <button  class="ap rounded-5" mat-button (click)="openDialog(request.id, request.requestedBy.id, request.fileNo
+                )">Approve</button>
 
               </div>
             </div>

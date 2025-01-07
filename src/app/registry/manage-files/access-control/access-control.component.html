@@ -1,72 +1,70 @@
-<div class="container">
-  <h2>File access control</h2>
+<div class="container ">
+  <mat-card class="m-2" appearance="raised">
+      <mat-card-header>
+          <h3> <fa-icon class="me-2 text-success" [icon]="faLock"></fa-icon> Authorize file access</h3>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="access-control" [formGroup]="accessForm" (ngSubmit)="assignAccess()">
 
-  <form class="access-control" [formGroup]="accessForm" (ngSubmit)="assignAccess()">
-    <mat-form-field appearance="fill">
-      <mat-label>File</mat-label>
-      <mat-select formControlName="fileId" required>
-        <mat-option value="" disabled>Select File</mat-option>
-        <mat-option *ngFor="let file of files" [value]="file.id">{{ file.name }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+          <div class="fields d-flex w-100 gap-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Select file</mat-label>
+              <mat-select formControlName="fileId" required>
+                <mat-option value="" disabled>Select file</mat-option>
+                <mat-option *ngFor="let file of files" [value]="file.fileNo">{{ file.fileTitle }}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>User</mat-label>
-      <mat-select  formControlName="userId" required>
-        <mat-option value="" disabled>Select User</mat-option>
-        <mat-option *ngFor="let user of users" [value]="user.id">{{ user.name }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Select user</mat-label>
+              <mat-select  formControlName="userId" required>
+                <mat-option value="" disabled>Select user</mat-option>
+                <mat-option *ngFor="let user of users" [value]="user.id">{{ user.fName }} {{ user.lName }} [{{ user.position }}]</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Access Level</mat-label>
-      <mat-select formControlName="accessLevel" required>
-        <mat-option value="" disabled>Select Access Level</mat-option>
-        <mat-option value="Read">Read</mat-option>
-        <mat-option value="Write">Write</mat-option>
-        <mat-option value="Edit">Edit</mat-option>
-      </mat-select>
-    </mat-form-field>
+          <button mat-flat-button color="primary" [disabled]="accessForm.invalid" type="submit">Authorize Access</button>
+        </form>
 
-    <button mat-flat-button color="primary" type="submit">Assign Access</button>
-  </form>
+      </mat-card-content>
+  </mat-card>
 
-  <div class="d-flex justify-content-between align-items-center gap-2">
-    <mat-form-field class="filter" appearance="fill">
-      <mat-label>Filter Logs</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter logs" />
-    </mat-form-field>
+  <mat-card class="m-2" appearance="raised">
+    <mat-card-header>
+      <h3> <fa-icon class="me-2 text-danger"  [icon]="faLockOpen"></fa-icon> Authorised files to users</h3>
 
-  </div>
-  <table mat-table [dataSource]="dataSource" >
-    <ng-container matColumnDef="fileId">
-      <th mat-header-cell *matHeaderCellDef>File ID</th>
-      <td mat-cell *matCellDef="let log">{{ log.fileId }}</td>
-    </ng-container>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="d-flex justify-content-between align-items-center gap-2">
+        <mat-form-field class="filter" appearance="fill">
+          <mat-label>Filter Logs</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filter logs" />
+        </mat-form-field>
 
-    <ng-container matColumnDef="userId">
-      <th mat-header-cell *matHeaderCellDef>User ID</th>
-      <td mat-cell *matCellDef="let log">{{ log.userId }}</td>
-    </ng-container>
+      </div>
+      <table mat-table [dataSource]="dataSource" >
+        <ng-container matColumnDef="fileId">
+          <th mat-header-cell *matHeaderCellDef>File ID</th>
+          <td mat-cell *matCellDef="let log">{{ log.fileId }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let log">{{ log.action }}</td>
-    </ng-container>
+        <ng-container matColumnDef="userId">
+          <th mat-header-cell *matHeaderCellDef>User ID</th>
+          <td mat-cell *matCellDef="let log">{{ log.userId }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="timestamp">
-      <th mat-header-cell *matHeaderCellDef>Timestamp</th>
-      <td mat-cell *matCellDef="let log">{{ log.timestamp | date: 'short' }}</td>
-    </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
-      <td mat-cell *matCellDef="let log">
-        <button mat-button color="warn" (click)="revokeAccess(log.fileId, log.userId)">Revoke</button>
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let log">
+            <button class="px-4" mat-button color="warn" (click)="revokeAccess(log.fileId, log.userId)">Revoke</button>
+          </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
 </div>

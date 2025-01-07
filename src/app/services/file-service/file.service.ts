@@ -82,4 +82,9 @@ export class FileService {
     return this.http.get<Department[]>(`${this.departmentBaseUrl}/getAllDepartments`);
   }
 
+  assignFileAccess(userId: number, fileId: string): Observable<any> {
+    const url = `${this.baseUrl}/add-user-to-file/${fileId}/${userId}`;
+    return this.http.patch(url, null); // Passing `null` as body since the endpoint might not need a request body
+  }
+
 }

@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 import { FileRequest } from "../../models/file.request.model";
 import { ConfirmApprovalComponent } from "../../registry/registry-dashboard/confirm-approval/confirm-approval.component";
 import { CommentDialogComponent } from "../../registry/registry-dashboard/comment-dialog/comment-dialog.component";
-import {map} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
@@ -68,4 +67,29 @@ export class FileRequestService {
     const url = `${this.baseUrl}/get-stats`;
     return this.http.get<{ status: string; count: number }[]>(url);
   }
+
+  sendFileRequest(
+    fileNo: string,
+    requestedBy: number,
+    reason: string,
+    comment: string,
+    status: string = 'Pending'
+  ): Observable<void> {
+    const url = `${this.baseUrl}/create-request`;
+    const body = {
+      requestedBy: requestedBy,
+      fileNo: fileNo,
+      reason: reason,
+      comment: comment,
+      status: status,
+    };
+
+    return this.http.post<void>(url, body).pipe(
+      catchError((error) => {
+        console.error('Error sending file request:', error);
+        return throwError(() => new Error('Failed to send file request'));
+      })
+    );
+  }
+
 }

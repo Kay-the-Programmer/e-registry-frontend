@@ -25,6 +25,7 @@ import {RejectedComponent} from "./file-requests/rejected/rejected.component";
 import {ApprovedComponent} from "./file-requests/approved/approved.component";
 import {Router, RouterOutlet} from "@angular/router";
 import {RouterModule} from "@angular/router";
+import {MatTabsModule } from "@angular/material/tabs";
 
 @Component({
   selector: 'app-registry-dashboard',
@@ -32,7 +33,9 @@ import {RouterModule} from "@angular/router";
   imports: [
     FormsModule, MatSnackBarModule, MatFormFieldModule, MatInputModule, MatIconModule,
     ConfirmApprovalComponent, MatButtonModule, MatExpansionModule, MatDialogModule,
-    CommonModule, RouterModule, MatCardModule, NgxChartsModule, MatToolbar, MatTable, FaIconComponent, PendingComponent, RejectedComponent, ApprovedComponent, RouterOutlet
+    CommonModule, RouterModule, MatCardModule, NgxChartsModule, MatToolbar, MatTable,
+    FaIconComponent, PendingComponent, RejectedComponent, ApprovedComponent, RouterOutlet,
+    MatTabsModule,
   ],
   templateUrl: './registry-dashboard.component.html',
   styleUrl: './registry-dashboard.component.css',

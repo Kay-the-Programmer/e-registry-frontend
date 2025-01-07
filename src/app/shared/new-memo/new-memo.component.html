@@ -1,0 +1,74 @@
+<mat-card class="compose-card">
+  <mat-card-header>
+    <mat-card-title>New memo</mat-card-title>
+    <div class="options">
+      <button mat-flat-button class="request" (click)="openRequestFileDialog()"> <fa-icon [icon]="faPaperclip"/> Request for a file</button>
+      <button mat-flat-button class="draft"> <fa-icon [icon]="faFile"/> Pick a draft</button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="memoForm" class="memo-form">
+
+      <div class="d-flex flex-row gap-3">
+        <!-- Recipients Section -->
+        <mat-form-field class="w-50" appearance="fill">
+          <mat-label>Memo destination</mat-label>
+          <mat-select formControlName="recipients">
+            <mat-option *ngFor="let recipient of recipients" [value]="recipient">
+              {{ recipient.position }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="flex-grow-1" appearance="fill">
+          <mat-label>File No.</mat-label>
+          <mat-select formControlName="file">
+            <mat-option *ngFor="let file of files" [value]="file">
+              {{ file.fileNo }} [{{ file.fileTitle }}]
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <!-- Subject Section -->
+      <mat-form-field appearance="fill">
+        <mat-label>Memo Subject</mat-label>
+        <input matInput
+               formControlName="subject"
+               placeholder="Enter memo subject"
+        />
+      </mat-form-field>
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Memo Title</mat-label>-->
+<!--        <input matInput formControlName="title" placeholder="Enter memo title" />-->
+<!--      </mat-form-field>-->
+
+
+      <!-- Body Section -->
+      <div class="form-group">
+        <quill-editor
+          id="body"
+          formControlName="body"
+          [style]="{ height: '300px' }"
+          [placeholder]="'Write your memo here...'"
+        ></quill-editor>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="memoForm.invalid"
+          (click)="sendMemo()"
+        >
+          Send
+        </button>
+        <button mat-button type="button" (click)="saveDraft()">Save Draft</button>
+      </div>
+    </form>
+
+  </mat-card-content>
+</mat-card>

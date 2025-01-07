@@ -73,15 +73,15 @@ export class PendingComponent {
     });
   }
 
-  openDialog(requestId: number): void {
+  openDialog(requestId: number, userId: number, fileNo: string): void {
     const dialogRef = this.dialog.open(ConfirmApprovalComponent, {
       width: '350px',
-      data: { requestId },
+      data: { requestId, userId, fileNo },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.confirmed) {
-        this.approveRequest(requestId, result.comment);
+        this.approveRequest(requestId, result.comment, userId, fileNo);
       } else {
         console.log(`Approval for request ${requestId} was canceled.`);
       }
@@ -104,13 +104,16 @@ export class PendingComponent {
     });
   }
 
-  approveRequest(requestId: number, comment: string): void {
+  approveRequest(requestId: number, comment: string, userId: number, fileNo: string): void {
     const status = 'Successful';
     const apiUrl = `http://localhost:3000/file-requests/update-request/${requestId}`;
     const params = { status, comment };
-
+    const accessUrl = `http://localhost:3000/files/add-user-to-file/${fileNo}/${userId}`;
     this.http.patch(apiUrl, null, { params }).subscribe({
       next: () => {
+        this.http.patch(accessUrl, null, { params }).subscribe({
+
+        })
         this.snackbar.open(`Request ${requestId} approved successfully with comment: ${comment}`, 'Okay', {
           duration: 3000,
         });

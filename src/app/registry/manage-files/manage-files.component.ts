@@ -26,8 +26,18 @@ import {JsonPipe} from '@angular/common';
 import {DeleteFileConfirmationComponent} from "./delete-file-confirmation/delete-file-confirmation.component";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MatCard, MatCardTitle} from "@angular/material/card";
-import {faFileShield, faFolderClosed, faFolderOpen, faFolderPlus, faUnlockAlt} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileShield,
+  faFolderClosed,
+  faFolderOpen,
+  faFolderPlus,
+  faLock,
+  faUnlockAlt
+} from "@fortawesome/free-solid-svg-icons";
 import {RouterLinkActive} from "@angular/router";
+import {MatTabsModule} from '@angular/material/tabs';
+import {FilesListComponent} from "./files-list/files-list.component";
+import {AccessControlComponent} from "./access-control/access-control.component";
 
 @Component({
   selector: 'app-manage-files',
@@ -38,11 +48,13 @@ import {RouterLinkActive} from "@angular/router";
     MatTableModule, FaIconComponent, RouterModule,
     MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderRow,
     MatHeaderRowDef, MatRow, MatRowDef, MatSort, MatSortHeader, MatTable,
-    MatToolbar, MatHeaderCellDef,RouterLinkActive, JsonPipe, DeleteFileConfirmationComponent, MatProgressSpinner, MatCard, MatCardTitle],
+    MatToolbar, MatHeaderCellDef, RouterLinkActive, JsonPipe,
+    DeleteFileConfirmationComponent, MatProgressSpinner, MatCard,
+    MatCardTitle, MatTabsModule, FilesListComponent, AccessControlComponent],
   templateUrl: './manage-files.component.html',
   styleUrl: './manage-files.component.css'
 })
-export class ManageFilesComponent implements OnInit, AfterViewInit{
+export class ManageFilesComponent implements OnInit{
 
   files: File[] = [];
   departmentMap: { [key: number]: string } = {};
@@ -52,22 +64,6 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
   length!: number;
   isFetching = true;
   pageEvent!: PageEvent;
-  pageSize = 10;
-  pageIndex = 0;
-
-  handlePageEvent(e: PageEvent) {
-    this.pageEvent = e;
-    this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageIndex = e.pageIndex;
-  }
-
-  ngAfterViewInit() {
-    if (this.paginator && this.sort) {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
-  }
 
 
   constructor(
@@ -174,4 +170,5 @@ export class ManageFilesComponent implements OnInit, AfterViewInit{
   protected readonly faFileShield = faFileShield;
   protected readonly faFolderOpen = faFolderOpen;
   protected readonly faFolderPlus = faFolderPlus;
+  protected readonly faLock = faLock;
 }

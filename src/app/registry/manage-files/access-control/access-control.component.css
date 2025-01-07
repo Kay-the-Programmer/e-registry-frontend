@@ -2,21 +2,16 @@
 .container {
   width: 1050px;
   margin: 0 ;
-  padding: 10px;
-  background-color: rgba(215, 227, 255, 0.41);
+  padding: 0;
+  background-color: transparent;
   border-radius: 0;
 }
 .access-control {
-  border-bottom: solid 1px #ddd;
+  margin-bottom: 0;
 }
-/* Form styling */
-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 5px;
+mat-card {
+  border-radius: 0;
 }
-
 mat-form-field {
   flex: 1 1 calc(33% - 16px);
   min-width: 200px;
@@ -33,15 +28,6 @@ button[mat-flat-button] {
   font-weight: bold;
 }
 
-button[mat-flat-button][color="primary"] {
-  background-color: #005cbb;
-  color: white;
-}
-
-button[mat-flat-button][color="accent"] {
-  background-color: #28a745;
-  color: white;
-}
 
 button[mat-flat-button][color="warn"] {
   background-color: #dc3545;
@@ -75,6 +61,14 @@ table {
 
 .mat-row:hover {
   background-color: #dff0d8;
+}
+
+h2{
+  color: #005cbb;
+}
+
+h3 {
+  font-weight: 500;
 }
 
 /* Responsive Design */

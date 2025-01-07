@@ -122,8 +122,6 @@ export class FilesListComponent implements OnInit {
             this.files = this.files.filter(file => file.fileNo !== fileId);
             this.dataSource.data = [...this.files]; // Refresh the table
             this.snackBar.open('File deleted successfully.', 'Close', { duration: 3000 });
-            // this.location.reload();
-            window.location.reload();
           },
           error: (err) => {
             const errorMessage =
@@ -141,7 +139,7 @@ export class FilesListComponent implements OnInit {
   openFile(fileNo: string) {
     this.fileService.getFileById(fileNo).subscribe({
       next: () => {
-        this.router.navigate(['/registry/manage-files/file-details', fileNo]);
+        this.router.navigate(['/registry/file-details', fileNo]);
       },
       error: () => {
         this.snackBar.open('Failed to open file.', 'Close', { duration: 1000 });

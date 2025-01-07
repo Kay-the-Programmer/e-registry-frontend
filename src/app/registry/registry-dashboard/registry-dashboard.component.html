@@ -1,55 +1,73 @@
 <div class="dashboard-container d-flex flex-column w-100">
   <div class="card-container d-flex flex-column">
-    <nav class="nav d-flex container-fluid justify-content-between align-items-center m-0 p-0">
-      <h2 class="m-0 p-0 px-3">File Requests</h2>
-      <div class="d-flex flex-row gap-1">
-        <div class="d-flex flex-row gap-1">
-          <button
-            class="approved"
-            mat-flat-button
-            [routerLink]="['pending-requests']"
-            [ngClass]="{ 'active-link': isActive('pending-requests') }"
-          >
-            Pending
-          </button>
-          <button
-            class="approved"
-            mat-flat-button
-            [routerLink]="['approved-requests']"
-            [ngClass]="{ 'active-link': isActive('approved-requests') }"
-          >
-            Approved
-          </button>
-          <button
-            class="rejected"
-            mat-flat-button
-            [routerLink]="['rejected-requests']"
-            [ngClass]="{ 'active-link': isActive('rejected-requests') }"
-          >
-            Rejected
-          </button>
-        </div>
-
-      </div>
-
-    </nav>
-
-    <div class="d-flex flex-row align-items-start align-content-start">
-      <!-- File Requests Section -->
-      <div class="flex-grow-1">
-        <router-outlet></router-outlet>
-      </div>
-      <!-- Dashboard Card Section -->
-      <mat-card class="dashboard-card" appearance="outlined">
-        <ngx-charts-bar-vertical
+    <nav class="nav d-flex container-fluid justify-content-between align-items-center ">
+      <mat-card class="dashboard-card" appearance="raised">
+<!--        <mat-card-header>-->
+<!--          <mat-card-title> File requests</mat-card-title>-->
+<!--        </mat-card-header>-->
+        <ngx-charts-bar-horizontal
           [results]="fileRequestsStats"
-          [view]="[150, 300]"
-          scheme="air"
+          [view]="[300, 100]"
+          scheme="forest"
           [xAxis]="true"
           [yAxis]="true"
           [legend]="false">
-        </ngx-charts-bar-vertical>
+        </ngx-charts-bar-horizontal>
       </mat-card>
+      <mat-card class="dashboard-card" appearance="raised">
+<!--        <mat-card-header>-->
+<!--          <mat-card-title> Files</mat-card-title>-->
+<!--        </mat-card-header>-->
+        <ngx-charts-bar-horizontal
+          [results]="fileRequestsStats"
+          [view]="[300, 100]"
+          scheme="ocean"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="false">
+        </ngx-charts-bar-horizontal>
+      </mat-card>
+      <mat-card class="dashboard-card" appearance="raised">
+<!--        <mat-card-header>-->
+<!--          <mat-card-title> Files</mat-card-title>-->
+<!--        </mat-card-header>-->
+        <ngx-charts-bar-horizontal
+          [results]="fileRequestsStats"
+          [view]="[300, 100]"
+          scheme="fire"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="false">
+        </ngx-charts-bar-horizontal>
+      </mat-card>
+    </nav>
+
+    <div class=" reqs d-flex flex-row align-items-start align-content-start">
+      <div class="d-flex w-100 flex-column bg-light">
+<!--        <div class="d-flex justify-content-center">-->
+<!--          <h2>File requests</h2>-->
+<!--        </div>-->
+        <div class="d-flex flex-row">
+          <!-- File Requests Section -->
+          <div class="flex-grow-1">
+
+            <mat-tab-group>
+              <mat-tab label="Pending file requests">
+                <app-pending/>
+              </mat-tab>
+              <mat-tab label="Approved file requests">
+                <app-approved/>
+              </mat-tab>
+              <mat-tab label="Rejected file requests">
+                <app-rejected/>
+              </mat-tab>
+            </mat-tab-group>
+
+          </div>
+          <!-- Dashboard Card Section -->
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

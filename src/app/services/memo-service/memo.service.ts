@@ -7,18 +7,32 @@ import { Observable } from 'rxjs';
 })
 export class MemoService {
 
-  private baseUrl = 'http://localhost:3000/memos/all-memos'; // The backend endpoint
+  private baseUrl = 'http://localhost:3000/memos'; // The backend endpoint
 
   constructor(private http: HttpClient) {}
 
   // Fetch all memos
   getAllMemos(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+    return this.http.get<any[]>(`${this.baseUrl}/all-memos`);
   }
 
-  private memoUrl = 'http://localhost:3000/memos';
   // Fetch a single memo by ID
   getMemoById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.memoUrl}/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
+
+
+
+  createMemo(memoData: {
+    body: string;
+    fileId: string;
+    status: string;
+    title: string;
+    from: number;
+    to: number;
+    subject: string;
+  }): Observable<any> {
+    const url = `${this.baseUrl}/create-memo`;
+    return this.http.post(url, memoData);
   }
 }

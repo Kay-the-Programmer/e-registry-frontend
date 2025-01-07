@@ -10,7 +10,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 0;
-  background-color: rgba(215, 227, 255, 0.08);
+  /*background-color: rgba(215, 227, 255, 0.08);*/
 
 }
 
@@ -21,16 +21,22 @@ h2 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: none;
-  border-radius: 25px;
-  background-color: rgba(215, 227, 255, 0.08);
+  border-radius: 5px;
+  background-color: #FFFFFF;
 }
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 
 nav {
   padding:20px 20px;
-  height: 50px;
-  background-color: rgba(215, 227, 255, 0.08);
+  height: fit-content;
+  /*background-color: rgba(215, 227, 255, 0.08);*/
   /*background-color: #d7e3ff;*/
+  border-bottom: solid 1px #ddd;
 }
 
 .filter.no-space .mat-form-field-wrapper {

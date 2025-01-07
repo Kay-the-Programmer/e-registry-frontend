@@ -6,25 +6,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import {DatePipe, NgForOf} from '@angular/common';
 import {MatInput} from "@angular/material/input";
-
-interface File {
-  id: string;
-  name: string;
-  owner?: string;
-  accessLevel?: string;
-}
+import {File} from '../../../models/file.model';
+import {FileService} from "../../../services/file-service/file.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../../../services/user.service";
+import {UserProfile} from "../../../models/user.model";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {faLock, faLockOpen} from "@fortawesome/free-solid-svg-icons";
+import {MatCard, MatCardModule} from "@angular/material/card";
 
 interface AccessLog {
   fileId: string;
   userId: string;
-  action: string;
   timestamp: Date;
-}
-
-interface User {
-  id: string;
-  name: string;
-  role: string;
 }
 
 @Component({
@@ -38,53 +32,53 @@ interface User {
     MatButtonModule,
     NgForOf,
     DatePipe,
-    MatInput
+    MatInput,
+    FaIconComponent,
+    MatCardModule
   ],
   templateUrl: './access-control.component.html',
   styleUrls: ['./access-control.component.css']
 })
 export class AccessControlComponent implements OnInit {
   accessForm: FormGroup;
-  files: File[] = [
-    { id: '1', name: 'Document 1' },
-    { id: '2', name: 'Document 2' },
-  ];
-  users: User[] = [
-    { id: 'u1', name: 'User 1', role: 'Viewer' },
-    { id: 'u2', name: 'User 2', role: 'Editor' },
-  ];
+  files: File[] = [];
+  users: UserProfile[] = [];
   logs: AccessLog[] = [];
-  displayedColumns: string[] = ['fileId', 'userId', 'action', 'timestamp', 'actions'];
+  displayedColumns: string[] = ['fileId', 'userId', 'actions'];
   dataSource = new MatTableDataSource<AccessLog>(this.logs);
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private fileService: FileService,
+    private userService: UserService,
+    ) {
     this.accessForm = this.fb.group({
       fileId: [''],
       userId: [''],
-      accessLevel: [''],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getFiles();
+    this.getUsers();
+  }
 
   assignAccess() {
-    const { fileId, userId, accessLevel } = this.accessForm.value;
-    const action = `Assigned ${accessLevel}`;
+    const { fileId, userId } = this.accessForm.value;
     const timestamp = new Date();
 
     // Log the action
-    this.logs.push({ fileId, userId, action, timestamp });
+    this.logs.push({ fileId, userId, timestamp });
     this.dataSource.data = this.logs;
-
-    alert(`Access '${accessLevel}' assigned successfully!`);
+    this.snackBar.open('Access authorised successfully!', 'Close', { duration: 3000 });
     this.accessForm.reset();
   }
 
   revokeAccess(fileId: string, userId: string) {
     this.logs = this.logs.filter(log => !(log.fileId === fileId && log.userId === userId));
     this.dataSource.data = this.logs;
-
-    alert('Access revoked successfully!');
+    this.snackBar.open('Access revoked successfully!', 'Close', { duration: 3000 });
   }
 
   checkAccess(userId: string, fileId: string): boolean {
@@ -100,4 +94,29 @@ export class AccessControlComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  getFiles(){
+    this.fileService.getAllFiles().subscribe({
+      next: (files) => {
+        this.files = files;
+      },
+      error: (error: Error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  getUsers(){
+    this.userService.fetchUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (error: Error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  protected readonly faLock = faLock;
+  protected readonly faLockOpen = faLockOpen;
 }
