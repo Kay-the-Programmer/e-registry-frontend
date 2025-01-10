@@ -1,23 +1,4 @@
 <div class="manage-users-container" >
-  <div class="cards d-flex container-fluid gap-2 justify-content-between">
-    <h2 class="mb-0">Manage files</h2>
-
-    <div class="d-flex gap-2 flex-row">
-<!--      <a routerLink="/registry/manage-files/all-files"-->
-<!--         routerLinkActive="active" mat-flat-button-->
-<!--         [routerLinkActiveOptions]="{ exact: true }"-->
-<!--      > <fa-icon [icon]="faFolderClosed" class="pe-1"></fa-icon> All files</a>-->
-
-<!--      <a mat-flat-button-->
-<!--         routerLink="/registry/manage-files/access-control"-->
-<!--         routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"-->
-<!--      > <fa-icon [icon]="faFileShield" class="pe-1"></fa-icon> File access control</a>-->
-
-      <button mat-flat-button class="create" (click)="openCreateFileDialog()">
-        <fa-icon [icon]="faFolderPlus" class="pe-1"></fa-icon> Create file
-      </button>
-    </div>
-  </div>
   <mat-tab-group>
     <mat-tab>
       <ng-template mat-tab-label>

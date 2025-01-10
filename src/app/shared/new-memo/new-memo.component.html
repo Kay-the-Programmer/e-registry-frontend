@@ -1,16 +1,16 @@
 <mat-card class="compose-card">
-  <mat-card-header>
-    <mat-card-title>New memo</mat-card-title>
+  <mat-toolbar class="d-flex justify-content-between py-2">
+    <h2 >New memo</h2>
     <div class="options">
-      <button mat-flat-button class="request" (click)="openRequestFileDialog()"> <fa-icon [icon]="faPaperclip"/> Request for a file</button>
-      <button mat-flat-button class="draft"> <fa-icon [icon]="faFile"/> Pick a draft</button>
+      <button mat-raised-button color="primary" class="request" (click)="openRequestFileDialog()"> <fa-icon [icon]="faPaperclip"/> Request for a file</button>
+<!--      <button mat-raised-button class="draft"> <fa-icon [icon]="faFile"/> Pick a draft</button>-->
     </div>
-  </mat-card-header>
+  </mat-toolbar>
 
   <mat-card-content>
     <form [formGroup]="memoForm" class="memo-form">
 
-      <div class="d-flex flex-row gap-3">
+      <div class="d-flex flex-row gap-2">
         <!-- Recipients Section -->
         <mat-form-field class="w-50" appearance="fill">
           <mat-label>Memo destination</mat-label>
@@ -31,7 +31,6 @@
         </mat-form-field>
 
       </div>
-
       <!-- Subject Section -->
       <mat-form-field appearance="fill">
         <mat-label>Memo Subject</mat-label>
@@ -40,12 +39,6 @@
                placeholder="Enter memo subject"
         />
       </mat-form-field>
-<!--      <mat-form-field appearance="fill">-->
-<!--        <mat-label>Memo Title</mat-label>-->
-<!--        <input matInput formControlName="title" placeholder="Enter memo title" />-->
-<!--      </mat-form-field>-->
-
-
       <!-- Body Section -->
       <div class="form-group">
         <quill-editor
@@ -53,21 +46,25 @@
           formControlName="body"
           [style]="{ height: '300px' }"
           [placeholder]="'Write your memo here...'"
+          [modules]="editorModules"
         ></quill-editor>
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="memoForm.invalid"
+            (click)="sendMemo()"
+          >
+            Send
+            <fa-icon [icon]="faPaperPlane"></fa-icon>
+          </button>
+<!--          <button mat-flat-button type="button" (click)="saveDraft()">Save Draft</button>-->
+        </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="form-actions">
-        <button
-          mat-raised-button
-          color="primary"
-          [disabled]="memoForm.invalid"
-          (click)="sendMemo()"
-        >
-          Send
-        </button>
-        <button mat-button type="button" (click)="saveDraft()">Save Draft</button>
-      </div>
+
+
     </form>
 
   </mat-card-content>

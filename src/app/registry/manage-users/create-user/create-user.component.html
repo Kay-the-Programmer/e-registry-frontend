@@ -1,50 +1,53 @@
-<h2 mat-dialog-title>Create New User</h2>
+<h2 class="mb-1" mat-dialog-title>Register new user</h2>
 <mat-dialog-content>
   <form [formGroup]="userForm" class="user-form">
     <!-- First Name -->
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>First Name</mat-label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>First name</mat-label>
       <input matInput formControlName="fName" />
     </mat-form-field>
 
     <!-- Last Name -->
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Last Name</mat-label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Last name</mat-label>
       <input matInput formControlName="lName" />
     </mat-form-field>
 
     <!-- Email -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field appearance="fill" class="form-field">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="email" />
     </mat-form-field>
 
     <!-- Password -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field appearance="fill" class="form-field">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password" type="password" />
     </mat-form-field>
 
     <!-- Role -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field appearance="fill" class="form-field">
       <mat-label>Role</mat-label>
-      <input matInput formControlName="role" />
+      <mat-select formControlName="role">
+        <mat-option value="Admin">Admin</mat-option>
+        <mat-option value="User">User</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <!-- Position -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field appearance="fill" class="form-field">
       <mat-label>Position</mat-label>
       <input matInput formControlName="position" />
     </mat-form-field>
 
     <!-- Employee Number -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field appearance="fill" class="form-field">
       <mat-label>Employee Number</mat-label>
       <input matInput formControlName="empNumber" />
     </mat-form-field>
 
     <!-- Department ID (Dynamic Dropdown) -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field appearance="fill" class="form-field">
       <mat-label>Department</mat-label>
       <mat-select formControlName="departmentId" [disabled]="!departments.length">
         <mat-option *ngFor="let department of departments" [value]="department.id">

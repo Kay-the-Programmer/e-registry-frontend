@@ -1,58 +1,75 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FileService } from "../../../services/file-service/file.service";
 import { File } from "../../../models/file.model";
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIcon} from "@angular/material/icon";
-import {MatSnackBarModule, MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogModule, MatDialog} from "@angular/material/dialog";
+import { MatButtonModule} from '@angular/material/button';
+import { MatIcon} from "@angular/material/icon";
+import { MatSnackBarModule, MatSnackBar} from "@angular/material/snack-bar";
+import { MatDialogModule, MatDialog} from "@angular/material/dialog";
 import { HttpClient } from "@angular/common/http";
 import {DeleteFileConfirmationComponent} from "../delete-file-confirmation/delete-file-confirmation.component";
 import {EditFileDialogComponent} from "../edit-file-dialog/edit-file-dialog.component";
 import {Router} from "@angular/router";
+import {faFolderPlus} from "@fortawesome/free-solid-svg-icons";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {CreateFileDialogComponent} from "../create-file-dialog/create-file-dialog.component";
+import {MatCard} from "@angular/material/card";
+import {NgIf} from "@angular/common";
+
 @Component({
   selector: 'app-files-list',
   standalone: true,
-  imports: [MatButtonModule, MatSnackBarModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIcon],
+  imports: [MatButtonModule, MatSnackBarModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIcon, FaIconComponent, MatCard, NgIf],
   templateUrl: './files-list.component.html',
   styleUrls: ['./files-list.component.css'],
 
 })
 export class FilesListComponent implements OnInit {
-  files: File[] = [];
-  departmentMap: { [key: number]: string } = {};
-  departments: any[] = [];
 
-  dataSource = new MatTableDataSource<File>(this.files);
-  displayedColumns: string[] = ['fileNo', 'fileTitle', 'fileSubject', 'department', 'actions', ];
+  displayedColumns: string[] = [
+    'fileNo',
+    'fileTitle',
+    'fileSubject',
+    'department',
+    'actions',
+  ];
 
   constructor(private fileService: FileService,
               private dialog: MatDialog,
               private snackBar: MatSnackBar,
               private http: HttpClient,
               private router: Router,
+  ) {}
 
-              ) {}
+  files: any[] = [];
+  departments: any[] = [];
+  dataSource = new MatTableDataSource<any>(this.files);
+
 
   ngOnInit(): void {
+    // Initial fetch of files and departments
     this.getFileList();
     this.fetchDepartments();
-
   }
+
+
+
 
   getFileList() {
-    this.fileService.getAllFiles().subscribe({
-      next: (data) => {
-        this.files = data;
-        this.dataSource.data = this.files; // Update the dataSource with the fetched data
+    this.http.get<File[]>('http://localhost:3000/files/get-all-files').subscribe({
+      next: (files) => {
+        this.files = files;
+        this.dataSource.data = this.files;
       },
-      error: (error) => {
-        console.log(error);
+      error:() => {
+        this.snackBar.open('Failed to fetch files', 'Refresh', { duration: 3000,
+        horizontalPosition: 'left', verticalPosition: 'bottom' });
       }
-    });
+    })
   }
+
 
   fetchDepartments() {
     this.http.get<any[]>('http://localhost:3000/dept/getAllDepartments').subscribe({
@@ -66,13 +83,12 @@ export class FilesListComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  isFilterApplied: boolean = false;
 
-  performAction(element: any) {
-
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.isFilterApplied = !!filterValue; // Check if filterValue is not empty
+    this.dataSource.filter = filterValue;
   }
 
 
@@ -139,11 +155,39 @@ export class FilesListComponent implements OnInit {
   openFile(fileNo: string) {
     this.fileService.getFileById(fileNo).subscribe({
       next: () => {
-        this.router.navigate(['/registry/file-details', fileNo]);
+        this.router.navigate(['/registry/file-details', fileNo]).then(
+          (success) => {
+            if (!success) {
+              this.snackBar.open('Navigation failed.', 'Close', { duration: 1000 });
+            }
+          },
+          (error) => {
+            this.snackBar.open(`An error occurred during navigation. ${{error}}`, 'Close', { duration: 1000 });
+          }
+        );
       },
       error: () => {
         this.snackBar.open('Failed to open file.', 'Close', { duration: 1000 });
       }
     });
   }
+
+
+
+  openCreateFileDialog(): void {
+    const dialogRef = this.dialog.open(CreateFileDialogComponent, {
+      width: '500px',
+    });
+
+    dialogRef.componentInstance.fileCreated.subscribe((newFile) => {
+      this.files.push(newFile);
+      this.dataSource.data = this.files;
+      this.snackBar.open("File created successfully!", "Close", { duration: 3000,
+        horizontalPosition: 'left', verticalPosition: "bottom",
+      });
+      location.reload();
+    })
+  }
+
+  protected readonly faFolderPlus = faFolderPlus;
 }

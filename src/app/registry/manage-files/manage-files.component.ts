@@ -1,70 +1,49 @@
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatListModule} from '@angular/material/list';
-import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {CommonModule} from '@angular/common';
-import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import {CreateFileDialogComponent} from "./create-file-dialog/create-file-dialog.component";
-import {RouterModule, Router} from "@angular/router";
-import {FileService} from "../../services/file-service/file.service";
-import {File} from "../../models/file.model";
-import {MatHeaderCellDef, MatTableModule} from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort';
-import {
-  MatCell, MatCellDef, MatColumnDef, MatHeaderCell,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableDataSource
-} from "@angular/material/table";
-import {MatSort, MatSortHeader} from "@angular/material/sort";
-import {MatToolbar} from "@angular/material/toolbar";
+import {Component, OnInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, signal, Signal} from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { RouterModule, Router } from "@angular/router";
+import { FileService } from "../../services/file-service/file.service";
 import { HttpClient } from "@angular/common/http";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {EditFileDialogComponent} from "./edit-file-dialog/edit-file-dialog.component";
-import {JsonPipe} from '@angular/common';
-import {DeleteFileConfirmationComponent} from "./delete-file-confirmation/delete-file-confirmation.component";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {MatCard, MatCardTitle} from "@angular/material/card";
-import {
-  faFileShield,
-  faFolderClosed,
-  faFolderOpen,
-  faFolderPlus,
-  faLock,
-  faUnlockAlt
-} from "@fortawesome/free-solid-svg-icons";
-import {RouterLinkActive} from "@angular/router";
-import {MatTabsModule} from '@angular/material/tabs';
-import {FilesListComponent} from "./files-list/files-list.component";
-import {AccessControlComponent} from "./access-control/access-control.component";
-
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { CreateFileDialogComponent } from "./create-file-dialog/create-file-dialog.component";
+import { MatToolbar } from "@angular/material/toolbar";
+import { faFolderClosed, faFolderPlus, faLock, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { DeleteFileConfirmationComponent } from "./delete-file-confirmation/delete-file-confirmation.component";
+import { FilesListComponent } from "./files-list/files-list.component";
+import { AccessControlComponent } from "./access-control/access-control.component";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTable, MatTableDataSource, MatTableModule} from "@angular/material/table";
+import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
 @Component({
   selector: 'app-manage-files',
   standalone: true,
   imports: [
-    MatIconModule, MatSortModule, MatInputModule, MatListModule,
-    MatPaginatorModule, MatButtonModule, MatDialogModule, CommonModule,
-    MatTableModule, FaIconComponent, RouterModule,
-    MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderRow,
-    MatHeaderRowDef, MatRow, MatRowDef, MatSort, MatSortHeader, MatTable,
-    MatToolbar, MatHeaderCellDef, RouterLinkActive, JsonPipe,
-    DeleteFileConfirmationComponent, MatProgressSpinner, MatCard,
-    MatCardTitle, MatTabsModule, FilesListComponent, AccessControlComponent],
+    MatIconModule, MatButtonModule, MatDialogModule, CommonModule,
+    FaIconComponent, RouterModule, MatToolbar, DeleteFileConfirmationComponent,
+    FilesListComponent, AccessControlComponent, MatTabsModule, MatFormFieldModule, MatInput, MatTableModule
+  ],
   templateUrl: './manage-files.component.html',
-  styleUrl: './manage-files.component.css'
+  styleUrls: ['./manage-files.component.css'],
+
 })
-export class ManageFilesComponent implements OnInit{
-
-  files: File[] = [];
-  departmentMap: { [key: number]: string } = {};
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
+export class ManageFilesComponent{
   length!: number;
-  isFetching = true;
-  pageEvent!: PageEvent;
 
+  files: any[] = [];
+  departments: any[] = [];
+
+  protected readonly faFolderClosed = faFolderClosed;
+  protected readonly faFolderPlus = faFolderPlus;
+  protected readonly faLock = faLock;
+  protected readonly faUserPlus = faUserPlus;
+
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private dialog: MatDialog,
@@ -72,103 +51,9 @@ export class ManageFilesComponent implements OnInit{
     private fileService: FileService,
     private http: HttpClient,
     private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  dataSource = new MatTableDataSource<File>([]);
-  displayedColumns: string[] = [
-    'fileNo',
-    'fileTitle',
-    'fileSubject',
-    'departmentId',
-    'actions'
-  ];
-
-  departments: any[] = [];
-
-  ngOnInit(){
-    this.loadFiles();
-    this.fetchDepartments();
-  }
-
-  loadFiles(): void {
-    this.fileService.getAllFiles().subscribe(
-      (data) => {
-      this.files = data;
-      this.isFetching = false;
-
-      this.dataSource = new MatTableDataSource<File>(this.files); // Reinitialize datasource
-      if (this.paginator && this.sort) {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-      console.log(this.files);
-    }, (error) => {
-        this.isFetching = false;
-        console.log(error);
-      });
-
-    // Fetch all departments
-    this.fileService.getAllDepartments().subscribe((departments) => {
-      departments.forEach(department => {
-        this.departmentMap[department.id] = department.departmentName;
-      });
-    });
-  }
 
 
-  openCreateFileDialog(): void {
-    const dialogRef = this.dialog.open(CreateFileDialogComponent, {
-      width: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe((newFile) => {
-      if (newFile) {
-        // Add the new file to the list
-        this.files.push({
-          ...newFile,
-          fileID: this.files.length + 1,
-          lastUsed: new Date().toLocaleDateString(),
-          numberOfMemos: 0,
-          isActive: true,
-        });
-        this.dataSource.data = this.files;
-      }
-    });
-  }
-
-  fetchDepartments() {
-    this.http.get<any[]>('http://localhost:3000/dept/getAllDepartments').subscribe({
-      next: (data) => {
-        this.departments = data;
-      },
-      error: (err) => {
-        this.snackBar.open('Failed to fetch departments.', 'Close', { duration: 3000 });
-        console.error('Error fetching departments:', err);
-      }
-    });
-  }
-
-
-  getDepartmentName(departmentId: number): string {
-    return this.departmentMap[departmentId] || 'Loading...';
-  }
-
-
-  openFile(fileNo: string) {
-    this.fileService.getFileById(fileNo).subscribe({
-      next: () => {
-        this.router.navigate(['/registry/dashboard/manage-files/file-details', fileNo]);
-      },
-      error: () => {
-        this.snackBar.open('Failed to open file.', 'Close', { duration: 1000 });
-      }
-    });
-  }
-
-  protected readonly faFolderClosed = faFolderClosed;
-  protected readonly faUnlockAlt = faUnlockAlt;
-  protected readonly faFileShield = faFileShield;
-  protected readonly faFolderOpen = faFolderOpen;
-  protected readonly faFolderPlus = faFolderPlus;
-  protected readonly faLock = faLock;
 }

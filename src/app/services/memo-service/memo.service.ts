@@ -22,17 +22,52 @@ export class MemoService {
   }
 
 
-
   createMemo(memoData: {
-    body: string;
-    fileId: string;
-    status: string;
-    title: string;
+    subject: string;
     from: number;
     to: number;
-    subject: string;
+    body: string;
+    title: string;
+    fileId: string;
+    status: string;
   }): Observable<any> {
     const url = `${this.baseUrl}/create-memo`;
     return this.http.post(url, memoData);
+  }
+  forwardMemo(forwardData: {
+    forwardedById: number;
+    forwardedToId: number;
+    memoId: number;
+    comment: string;
+    status: string;
+  }): Observable<any> {
+    const url = `${this.baseUrl}/forward-memo`;
+    return this.http.post(url, forwardData);
+  }
+
+  updateMemo(
+    memoId: number,
+    updateData: {
+      body: string;
+      fileId: string;
+      status: string;
+      title: string;
+      from: number;
+      to: number;
+      subject: string;
+    }
+  ): Observable<any> {
+    const url = `${this.baseUrl}/update-memo/${memoId}`;
+    return this.http.patch(url, updateData);
+  }
+
+  getMemosForwardedToUser(userId: number): Observable<any[]> {
+    const url = `${this.baseUrl}/get-memos-forwarded-to-user/${userId}`;
+    return this.http.get<any[]>(url);
+  }
+
+  deleteMemo(memoId: number): Observable<any> {
+    const url = `${this.baseUrl}/delete-memo/${memoId}`;
+    return this.http.delete(url);
   }
 }

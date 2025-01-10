@@ -24,7 +24,7 @@
             </mat-form-field>
           </div>
 
-          <button mat-flat-button color="primary" [disabled]="accessForm.invalid" type="submit">Authorize Access</button>
+          <button mat-flat-button color="primary" [disabled]="accessForm.invalid" (click)="addUserToFile()" type="submit">Authorize Access</button>
         </form>
 
       </mat-card-content>
@@ -33,7 +33,6 @@
   <mat-card class="m-2" appearance="raised">
     <mat-card-header>
       <h3> <fa-icon class="me-2 text-danger"  [icon]="faLockOpen"></fa-icon> Authorised files to users</h3>
-
     </mat-card-header>
     <mat-card-content>
       <div class="d-flex justify-content-between align-items-center gap-2">

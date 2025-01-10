@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {CreateUserComponent} from "./create-user/create-user.component";
+import { CreateUserComponent} from "./create-user/create-user.component";
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
-import {MatToolbar} from "@angular/material/toolbar";
+import { MatToolbar } from "@angular/material/toolbar";
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,18 +12,19 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { HttpClient } from "@angular/common/http";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {DepartmentService} from "../../services/department.service";
-import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
-import {EditUserDialogComponent} from "./edit-user-dialog/edit-user-dialog.component";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-dialog.component";
+import { EditUserDialogComponent } from "./edit-user-dialog/edit-user-dialog.component";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { faUserCheck, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-manage-users',
   standalone: true,
-  imports: [MatCardModule, MatDividerModule, CommonModule, MatButtonModule, MatToolbar, MatTableModule,MatIconModule,
-    MatPaginator, ConfirmationDialogComponent,EditUserDialogComponent,
-    MatSortModule,
-    ],
+  imports: [MatCardModule, MatDividerModule, CommonModule, MatButtonModule, MatToolbar, MatTableModule, MatIconModule,
+    MatPaginator, ConfirmationDialogComponent, EditUserDialogComponent,
+    MatSortModule, FaIconComponent,
+  ],
   templateUrl: './manage-users.component.html',
   styleUrl: './manage-users.component.css'
 })
@@ -38,6 +39,7 @@ export class ManageUsersComponent implements OnInit{
     'userDept',
     'actions',
   ];
+
   departments: any[] = [];
   users: any[] = [];
 
@@ -98,31 +100,17 @@ export class ManageUsersComponent implements OnInit{
       width: '500px',
     });
 
-    dialogRef.afterClosed().subscribe((newUser) => {
-      if (newUser) {
-        this.http
-          .post('http://localhost:3000/api/auth/signUp', newUser)
-          .subscribe({
-            next: () => {
-              this.snackBar.open('User created successfully!', 'Close', {
-                duration: 3000,
-              });
-              this.fetchUsers(); // Refresh the list
-            },
-            error: () => {
-              this.snackBar.open('Failed to create user.', 'Close', {
-                duration: 3000,
-              });
-            },
-          });
-      }
+    dialogRef.componentInstance.userCreated.subscribe((newUser) => {
+      this.users.push(newUser); // Add the new user to the array
+      this.dataSource.data = this.users; // Update the table data source
+      this.snackBar.open('User added to the list!', 'Close', { duration: 3000 });
     });
   }
 
   deleteUserWithConfirmation(user: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
-      data: { message: 'Are you sure you want to delete this user?' }
+      width: '400px',
+      data: { title: 'Confirm user deletion', message: 'Are you sure you want to delete this user?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -147,7 +135,7 @@ export class ManageUsersComponent implements OnInit{
   // Open the Edit User dialog
   openEditDialog(user: any): void {
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      width: '400px',
+      width: '600px',
       data: { user }  // Pass user data to the dialog
     });
 
@@ -170,4 +158,7 @@ export class ManageUsersComponent implements OnInit{
       }
     });
   }
+
+  protected readonly faUserCheck = faUserCheck;
+  protected readonly faUserPlus = faUserPlus;
 }

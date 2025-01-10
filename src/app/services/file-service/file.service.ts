@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {computed, Injectable, signal} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable, tap} from 'rxjs';
 import { File } from "../../models/file.model";
 import {Department} from "../../models/department.model";
 
@@ -12,6 +12,31 @@ export class FileService {
 
   constructor(private http: HttpClient) {}
 
+  private filesSubject = new BehaviorSubject<any[]>([]);
+  files$:Observable<any> = this.filesSubject.asObservable();
+
+  /**
+   * Fetch all files from the backend and update the state
+   */
+  setFiles(): void {
+    this.getAllFiles().subscribe(files => {
+      this.filesSubject.next(files);
+    });
+  }
+
+  /**
+   * Create a new file and update the state
+   * @param file - File data to create
+   * @returns Observable of the created file
+   */
+  addFile(file: Partial<File>): Observable<File> {
+    return this.createFile(file).pipe(
+      tap(newFile => {
+        const currentFiles = this.filesSubject.getValue();
+        this.filesSubject.next([...currentFiles, newFile]);
+      })
+    );
+  }
   /**
    * Create a new file
    * @param file - File data to create
@@ -82,9 +107,25 @@ export class FileService {
     return this.http.get<Department[]>(`${this.departmentBaseUrl}/getAllDepartments`);
   }
 
-  assignFileAccess(userId: number, fileId: string): Observable<any> {
+  addUserToFile(fileId: string, userId: number): Observable<any> {
     const url = `${this.baseUrl}/add-user-to-file/${fileId}/${userId}`;
-    return this.http.patch(url, null); // Passing `null` as body since the endpoint might not need a request body
+    return this.http.patch(url, null); // Sending PATCH request with
   }
+
+  removeUserFromFile(fileId: string, userId: number): Observable<any> {
+    const url = `${this.baseUrl}/remove-user-from-file/${fileId}/${userId}`;
+    return this.http.delete(url);
+  }
+
+  getUserAssignedFiles(userId: number): Observable<any> {
+    const url = `${this.baseUrl}/get-user-assigned-files/${userId}`;
+    return this.http.get<any>(url);
+  }
+
+  getFileStats(fileNo: string): Observable<any> {
+    const url = `${this.baseUrl}/get-file-stats/${fileNo}`;
+    return this.http.get<any>(url);
+  }
+
 
 }

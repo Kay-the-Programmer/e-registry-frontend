@@ -12,7 +12,7 @@
 
     <!-- File Name Field -->
     <mat-form-field appearance="fill" class="w-100">
-      <mat-label>File Name</mat-label>
+      <mat-label>File name</mat-label>
       <input matInput formControlName="fileTitle" placeholder="Enter file name">
       <mat-error *ngIf="createFileForm.get('fileTitle')?.hasError('required')">
         File name is required
@@ -39,10 +39,6 @@
       <mat-error *ngIf="createFileForm.get('departmentId')?.hasError('required')">
         Department is required
       </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="w-100">
-      <input matInput formControlName="id" [value]="createFileForm.get('fileNo')" >
     </mat-form-field>
 
     <!-- Actions -->

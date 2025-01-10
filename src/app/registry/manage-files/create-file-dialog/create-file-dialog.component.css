@@ -23,3 +23,15 @@ button.cancel {
 button.cancel:hover {
   background-color: rgba(244, 67, 54, 0.09);
 }
+
+::ng-deep .mat-snack-bar-container {
+  background-color: #005cbb; /* Default Material color */
+  color: #fff;
+  font-size: 14px;
+  border-radius: 25px;
+}
+::ng-deep .custom-dialog-container {
+  border-radius: 8px;
+  padding: 16px;
+  background-color: white;
+}

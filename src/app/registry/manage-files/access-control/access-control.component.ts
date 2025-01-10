@@ -13,7 +13,7 @@ import {UserService} from "../../../services/user.service";
 import {UserProfile} from "../../../models/user.model";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faLock, faLockOpen} from "@fortawesome/free-solid-svg-icons";
-import {MatCard, MatCardModule} from "@angular/material/card";
+import { MatCardModule} from "@angular/material/card";
 
 interface AccessLog {
   fileId: string;
@@ -81,15 +81,6 @@ export class AccessControlComponent implements OnInit {
     this.snackBar.open('Access revoked successfully!', 'Close', { duration: 3000 });
   }
 
-  checkAccess(userId: string, fileId: string): boolean {
-    return this.logs.some(log => log.userId === userId && log.fileId === fileId);
-  }
-
-  generateReport() {
-    console.table(this.logs);
-    alert('Access report generated. Check the console for details.');
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -116,6 +107,36 @@ export class AccessControlComponent implements OnInit {
       }
     })
   }
+
+  addUserToFile() {
+    const fileId = this.accessForm.get('fileId')?.value; // Access value safely
+    const userId = this.accessForm.get('userId')?.value; // Access value safely
+
+    if (fileId && userId) {
+      this.fileService.addUserToFile(fileId, userId).subscribe({
+        next: (response) => {
+          this.snackBar.open(`User authorized to use file`, 'Close', {
+            duration: 3000,
+            horizontalPosition: 'left',
+            verticalPosition: 'bottom'
+          });
+        },
+        error: (error: Error) => {
+          console.error('Error adding user to file:', error);
+          // Provide user-friendly error feedback
+          this.snackBar.open('Error authorizing user. Please try again.', 'Close', { duration: 3000 });
+        }
+      });
+    } else {
+      // Handle case where fileId or userId is missing
+      console.error('File ID or User ID is missing.');
+      this.snackBar.open('Please select a file and a user.', 'Close', { duration: 3000 });
+    }
+  }
+  //
+  // getListOfAccess(){
+  //   this.fileService.getUserAssignedFiles()
+  // }
 
   protected readonly faLock = faLock;
   protected readonly faLockOpen = faLockOpen;

@@ -81,4 +81,33 @@ export class AuthService {
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('user');
   }
+
+  userName: string = '';
+
+  fetchUserName(): void {
+    const userToken = sessionStorage.getItem('authToken'); // Or use localStorage.getItem('authToken') if stored there
+    if (userToken) {
+      // Decode the token to extract the user's email (assuming the email is stored in the token)
+      const decodedToken = JSON.parse(atob(userToken.split('.')[1])); // Decode JWT token
+      this.userName = decodedToken.fName + ' ' + decodedToken.lName;
+    }
+  }
+
+  userId!: number;
+  fetchUserId(): void {
+    const userToken = sessionStorage.getItem('authToken'); // Or use localStorage.getItem('authToken') if stored there
+    if (userToken) {
+      // Decode the token to extract the user's email (assuming the email is stored in the token)
+      const decodedToken = JSON.parse(atob(userToken.split('.')[1])); // Decode JWT token
+      this.userId = decodedToken.userId;
+    }
+  }
+
+  getUserId(): number {
+    return this.userId;
+  }
+
+  getUserName(): string {
+    return this.userName;
+  }
 }

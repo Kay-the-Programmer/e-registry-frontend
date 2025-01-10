@@ -28,13 +28,11 @@ export class RegistrySidebarComponent implements OnInit{
   protected readonly faPencil = faPencil;
   protected readonly faMapLocationDot = faMapLocationDot;
   protected readonly faCircleUser = faCircleUser;
-  protected readonly faFolderTree = faFolderTree;
   protected readonly faFileLines = faFileLines;
   protected readonly faChartSimple = faChartSimple;
   protected readonly faDashboard = faDashboard;
   protected readonly faUsers = faUsers;
   protected readonly faFolderPlus = faFolderPlus;
-  protected readonly faClock = faClock;
   userName : string | null = null;
   fetchUserName (){
     const userToken = sessionStorage.getItem('authToken'); // Or use localStorage.getItem('authToken') if stored there

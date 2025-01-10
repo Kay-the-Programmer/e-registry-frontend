@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { CommonModule } from "@angular/common";
-import {MatSelectModule} from "@angular/material/select";
+import { MatSelectModule} from "@angular/material/select";
 
 @Component({
   selector: 'app-create-user',
@@ -23,7 +23,6 @@ import {MatSelectModule} from "@angular/material/select";
     MatCardModule,
     MatDividerModule,
     MatSnackBarModule,
-
     CommonModule,
     MatSelectModule
   ],
@@ -35,6 +34,8 @@ export class CreateUserComponent implements OnInit {
   buttonStatus: string = 'Save';
   isSubmitting: boolean = false;
   departments: any[] = [];
+
+  @Output() userCreated = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
@@ -93,12 +94,11 @@ export class CreateUserComponent implements OnInit {
       this.http.post('http://localhost:3000/auth/signUp', userData).subscribe({
         next: (response) => {
           this.snackBar.open('User created successfully!', 'Close', { duration: 3000 });
-          this.dialogRef.close(); // Close dialog on success
-          this.buttonStatus = "Create user";
-          this.isSubmitting = false;
+          this.buttonStatus = "Creating user";
 
-          // Refresh the page
-          location.reload();
+          this.userCreated.emit(response); // Emit the new user data
+          this.dialogRef.close(); // Close dialog on success
+          this.isSubmitting = false;
         },
 
         error: (error) => {
@@ -106,7 +106,6 @@ export class CreateUserComponent implements OnInit {
           console.error('Error response:', error);
           this.buttonStatus = "Create user";
           this.isSubmitting = false;
-
         },
         complete: () => {
           this.isSubmitting = false;

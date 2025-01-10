@@ -2,33 +2,29 @@
   margin: 0;
   max-width: 1050px;
   padding: 0;
-  width: 1040px;
-  background-color: rgba(0, 92, 187, 0.05);
+  width: 1050px;
+  background-color: snow;
   box-shadow: none;
+  max-height: 620px;
 }
-mat-card-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-content: center;
-  justify-content: space-between;
-  padding: 0;
-  margin: 0;
-  color: #005cbb;
-  border-bottom: solid 1px #005cbb;
-}
+
 button {
   border-radius: 25px;
   margin: 0 5px;
   padding: 0 20px;
+
 }
 button.request {
   color: #005cbb;
   background-color: transparent;
 }
+
 fa-icon {
-  padding-right: 5px;
-  color: #005cbb;
+  margin-left: 5px;
+}
+
+button.request fa-icon {
+  margin: 0 5px 0 0;
 }
 button.draft {
   color: #005cbb; background-color: transparent;
@@ -62,10 +58,7 @@ mat-card-content{
 }
 .form-actions {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+  justify-content: end;
 }
 quill-editor {
   /*border: 1px solid #ccc;*/
@@ -74,7 +67,7 @@ quill-editor {
 .form-control, .form-select {
   border-radius: 0;
 }
-mat-form-field {
-  margin-bottom: 0;
-  padding-bottom: 0;
+
+h2 {
+  color: #005cbb;
 }

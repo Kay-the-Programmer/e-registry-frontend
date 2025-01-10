@@ -1,7 +1,4 @@
-.dashboard-container {
-  width: 1050px;
 
-}
 h2 {
   color: #005cbb;
 }
@@ -114,7 +111,7 @@ button.re:hover, button.back:hover {
 }
 
 .detail .left {
-  border-right: solid 1px lightgrey;
+  border-right: solid 1px aliceblue;
   padding: 10px;
 }
 
@@ -138,3 +135,53 @@ mat-expansion-panel.mat-expansion-panel {
   border-radius: 0;
   background-color: rgba(215, 227, 255, 0.08);
 }
+
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+

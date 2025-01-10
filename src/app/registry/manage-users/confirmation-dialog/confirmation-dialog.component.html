@@ -1,9 +1,8 @@
-<div class="d-flex p-3 flex-column">
   <mat-dialog-content>
+    <h2>{{ data.title }}</h2>
     <p>{{ data.message }}</p>
+    <mat-dialog-actions class="d-flex flex-row justify-content-end">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="warn" (click)="onConfirm()">Confirm</button>
+    </mat-dialog-actions>
   </mat-dialog-content>
-  <mat-dialog-actions class="d-flex flex-row justify-content-between">
-    <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button color="warn" (click)="onConfirm()">Delete</button>
-  </mat-dialog-actions>
-</div>

@@ -1,7 +1,6 @@
 /* General styles for the dialog */
 mat-dialog-content {
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 /* Styling the form fields to provide enough space and make them consistent */
@@ -37,6 +36,8 @@ mat-dialog-actions {
 button {
   margin-left: 10px;
   font-size: 14px;
+  padding: 0 25px;
+  border-radius: 25px!important;
 }
 
 /* Button with a primary color for Save */
@@ -48,9 +49,11 @@ button[mat-raised-button][color="primary"] {
 
 /* Button with a warning color for Cancel */
 button[mat-button] {
-  color: #555;
+  color: #f44336;
 }
-
+button[mat-button]:hover {
+  background-color: rgba(244, 67, 54, 0.05);
+}
 /* Disable Save button if form is invalid */
 button[disabled] {
   background-color: #dcdcdc;

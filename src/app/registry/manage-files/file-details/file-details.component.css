@@ -10,7 +10,7 @@
 .file-details-card {
   min-width: 1050px;
   margin: 0 auto;
-  background-color: #f7f8fa;
+  background-color: white;
   border-radius: 0;
   border-right: solid 1px #ddd;
   border-bottom: solid 1px #ddd;
@@ -68,7 +68,7 @@ tr.mat-row.odd-row {
 }
 
 tr.mat-row:hover {
-  background-color: #e0f7fa; /* Highlight on hover */
+  background-color: whitesmoke; /* Highlight on hover */
   cursor: pointer;
 }
 
