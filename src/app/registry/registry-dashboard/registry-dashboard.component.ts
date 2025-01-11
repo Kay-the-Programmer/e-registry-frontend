@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { MatToolbar } from "@angular/material/toolbar";
@@ -7,23 +7,18 @@ import { CommonModule } from "@angular/common";
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
-import { HttpClient } from "@angular/common/http";
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { CommentDialogComponent } from "./comment-dialog/comment-dialog.component";
+import {  MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { FileRequest } from "../../models/file.request.model";
 import { ConfirmApprovalComponent } from "./confirm-approval/confirm-approval.component";
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {FileRequestService} from "../../services/file-request-service/file-request.service";
 import {PendingComponent} from "./file-requests/pending/pending.component";
 import {RejectedComponent} from "./file-requests/rejected/rejected.component";
 import {ApprovedComponent} from "./file-requests/approved/approved.component";
-import {Router, RouterOutlet} from "@angular/router";
 import {RouterModule} from "@angular/router";
 import {MatTabsModule } from "@angular/material/tabs";
 
@@ -34,7 +29,7 @@ import {MatTabsModule } from "@angular/material/tabs";
     FormsModule, MatSnackBarModule, MatFormFieldModule, MatInputModule, MatIconModule,
     ConfirmApprovalComponent, MatButtonModule, MatExpansionModule, MatDialogModule,
     CommonModule, RouterModule, MatCardModule, NgxChartsModule, MatToolbar, MatTable,
-    FaIconComponent, PendingComponent, RejectedComponent, ApprovedComponent, RouterOutlet,
+    FaIconComponent, PendingComponent, RejectedComponent, ApprovedComponent,
     MatTabsModule,
   ],
   templateUrl: './registry-dashboard.component.html',
@@ -53,14 +48,7 @@ export class RegistryDashboardComponent implements OnInit {
 
   constructor(
     private fileRequestService: FileRequestService,
-    private cdr: ChangeDetectorRef,
-    private router: Router
   ) {}
-
-
-  isActive(route: string): boolean {
-    return this.router.url.includes(route);
-  }
 
   ngOnInit(): void {
     this.fetchFileRequestsStats();
@@ -81,8 +69,6 @@ export class RegistryDashboardComponent implements OnInit {
         console.error('Error fetching stats:', err);
       },
     });
-
-
   }
 
   private getCount(stats: { status: string; count: number }[], status: string): number {

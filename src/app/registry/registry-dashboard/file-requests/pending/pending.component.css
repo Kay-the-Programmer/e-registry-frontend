@@ -120,7 +120,7 @@ button.re:hover, button.back:hover {
 }
 .detail .header {
   border-bottom: solid 1px lightgrey;
-  color: #005cbb;
+  color: rgba(0, 92, 187, 0.83);
   font-weight: 500;
 }
 button {
@@ -147,6 +147,7 @@ tr.example-detail-row {
 
 tr.example-element-row:not(.example-expanded-row):hover {
   background: whitesmoke;
+  cursor: pointer;
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
@@ -157,31 +158,15 @@ tr.example-element-row:not(.example-expanded-row):active {
   border-bottom-width: 0;
 }
 
-.example-element-detail {
-  overflow: hidden;
-  display: flex;
+strong{
+  color: #6e6c6c;
+
 }
 
-.example-element-diagram {
-  min-width: 80px;
-  border: 2px solid black;
-  padding: 8px;
-  font-weight: lighter;
-  margin: 8px 0;
-  height: 104px;
+.no-data-message {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  color: gray;
+  margin-top: 20px;
 }
-
-.example-element-symbol {
-  font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
-}
-
-.example-element-description {
-  padding: 16px;
-}
-
-.example-element-description-attribution {
-  opacity: 0.5;
-}
-

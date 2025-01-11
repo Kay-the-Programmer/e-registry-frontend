@@ -54,9 +54,6 @@ export class FilesListComponent implements OnInit {
     this.fetchDepartments();
   }
 
-
-
-
   getFileList() {
     this.http.get<File[]>('http://localhost:3000/files/get-all-files').subscribe({
       next: (files) => {
@@ -69,7 +66,6 @@ export class FilesListComponent implements OnInit {
       }
     })
   }
-
 
   fetchDepartments() {
     this.http.get<any[]>('http://localhost:3000/dept/getAllDepartments').subscribe({
@@ -111,10 +107,10 @@ export class FilesListComponent implements OnInit {
         this.fileService.updateFile(file.fileNo, updatedFile).subscribe(
           {
             next: () => {
-              this.snackBar.open('File updated successfully.', 'Close', { duration: 3000 });
+              this.snackBar.open('File updated successfully.', 'Close', { duration: 3000, horizontalPosition: 'left', verticalPosition: 'bottom' });
             },
             error: () => {
-              this.snackBar.open('Failed to update file.', 'Close', { duration: 3000 });
+              this.snackBar.open('Failed to update file.', 'Close', { duration: 3000, horizontalPosition: 'left', verticalPosition: 'bottom' });
             }
           });
       }
@@ -137,7 +133,7 @@ export class FilesListComponent implements OnInit {
           next: () => {
             this.files = this.files.filter(file => file.fileNo !== fileId);
             this.dataSource.data = [...this.files]; // Refresh the table
-            this.snackBar.open('File deleted successfully.', 'Close', { duration: 3000 });
+            this.snackBar.open('File deleted successfully.', 'Close', { duration: 3000, horizontalPosition: 'left', verticalPosition: 'bottom' });
           },
           error: (err) => {
             const errorMessage =
@@ -185,7 +181,7 @@ export class FilesListComponent implements OnInit {
       this.snackBar.open("File created successfully!", "Close", { duration: 3000,
         horizontalPosition: 'left', verticalPosition: "bottom",
       });
-      location.reload();
+      this.getFileList();
     })
   }
 

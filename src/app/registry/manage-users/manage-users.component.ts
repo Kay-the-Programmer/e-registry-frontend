@@ -103,7 +103,8 @@ export class ManageUsersComponent implements OnInit{
     dialogRef.componentInstance.userCreated.subscribe((newUser) => {
       this.users.push(newUser); // Add the new user to the array
       this.dataSource.data = this.users; // Update the table data source
-      this.snackBar.open('User added to the list!', 'Close', { duration: 3000 });
+      this.snackBar.open('User added to the list!', 'Close', { duration: 3000,
+      horizontalPosition: 'left', verticalPosition:'bottom'});
     });
   }
 

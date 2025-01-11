@@ -8,19 +8,21 @@ import {
 import {NgForOf, NgIf} from "@angular/common";
 import {FileRequest} from "../../../../models/file.request.model";
 import {FileRequestService} from "../../../../services/file-request-service/file-request.service";
+import {MatTable} from "@angular/material/table";
 
 @Component({
   selector: 'app-rejected',
   standalone: true,
-  imports: [
-    MatAccordion,
-    MatExpansionPanel,
-    MatExpansionPanelDescription,
-    MatExpansionPanelHeader,
-    MatExpansionPanelTitle,
-    NgForOf,
-    NgIf
-  ],
+    imports: [
+        MatAccordion,
+        MatExpansionPanel,
+        MatExpansionPanelDescription,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        NgForOf,
+        NgIf,
+        MatTable
+    ],
   templateUrl: './rejected.component.html',
   styleUrl: './rejected.component.css'
 })
