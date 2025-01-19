@@ -1,9 +1,8 @@
-<mat-card>
+<mat-card class="mat-card">
   <div class="d-flex flex-row justify-content-between align-items-center">
-    <mat-form-field class="w-50">
+    <mat-form-field class="w-50" subscriptSizing="dynamic">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. File Title" #input>
-
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="openCreateFileDialog()">
       <fa-icon class="me-2 " [icon]="faFolderPlus"></fa-icon>
@@ -11,7 +10,6 @@
     </button>
   </div>
   <mat-table [dataSource]="dataSource" class="custom-table">
-
     <!-- File ID Column -->
     <ng-container matColumnDef="fileNo">
       <mat-header-cell mat-header-cell *matHeaderCellDef> File ID </mat-header-cell>

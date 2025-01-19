@@ -1,14 +1,30 @@
 <div class="timeline-container">
   <div class="timeline">
-    <h3 class="px-3">Memo title</h3>
-    <div class="timeline-item" *ngFor="let event of events">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3>{{ event.action }}</h3>
-        <p><strong>Date:</strong> {{ event.date }}</p>
-        <p>{{ event.description }}</p>
-        <p><strong>Department:</strong> {{ event.department }}</p>
+    <!-- Show this when events array has items -->
+    <ng-container *ngIf="events.length > 0; else noEventsTemplate">
+      <div class="timeline-item" *ngFor="let event of events">
+        <div class="timeline-dot">
+          <fa-icon [icon]="faCheckCircle"></fa-icon>
+        </div>
+        <div class="timeline-content">
+          <h3>{{ event.action }}</h3>
+          <p><strong>Date:</strong> {{ event.date }}</p>
+          <p>{{ event.description }}</p>
+          <p><strong>Department:</strong> {{ event.department }}</p>
+        </div>
       </div>
-    </div>
+      <div class="timeline-dot">
+        <fa-icon [icon]="faLocationDot"></fa-icon>
+      </div>
+    </ng-container>
+
+    <!-- Fallback message for empty events -->
+    <ng-template #noEventsTemplate>
+      <div class="empty-timeline">
+        <fa-icon [icon]="faMapLocationDot" class="empty-icon"></fa-icon>
+        <p class="mt-3">No events to display. Select memo to show events!</p>
+      </div>
+    </ng-template>
   </div>
 </div>
+

@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Forward Memo</h2>
+<mat-dialog-content>
+  <form [formGroup]="forwardForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Forward to</mat-label>
+      <mat-select [(ngModel)]="selectedValue" formControlName="selectedUserId">
+        @for (user of allUsers; track user.id) {
+          <mat-option [value]="user.id">{{ user.fName }} {{ user.lName }} [{{ user.position }}]</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Add comment</mat-label>
+      <textarea matInput formControlName="comment" placeholder="Write your comment here"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" (click)="onForward()" [disabled]="forwardForm.invalid">
+    Forward
+  </button>
+</mat-dialog-actions>

@@ -16,11 +16,20 @@ export class MemoService {
     return this.http.get<any[]>(`${this.baseUrl}/all-memos`);
   }
 
+  // Fetch user memos
+  getUserMemos(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/get-user-memos/${userId}`);
+  }
+
   // Fetch a single memo by ID
   getMemoById(id: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
+  //Fetch memo forwarded to user
+  getMemoForwardedToUser(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/get-memos-forwarded-to-user/${userId}`);
+  }
 
   createMemo(memoData: {
     subject: string;
@@ -34,12 +43,13 @@ export class MemoService {
     const url = `${this.baseUrl}/create-memo`;
     return this.http.post(url, memoData);
   }
+
   forwardMemo(forwardData: {
     forwardedById: number;
-    forwardedToId: number;
+    forwardedToId: string;
     memoId: number;
-    comment: string;
-    status: string;
+    comment: any;
+    status: string
   }): Observable<any> {
     const url = `${this.baseUrl}/forward-memo`;
     return this.http.post(url, forwardData);
@@ -55,16 +65,14 @@ export class MemoService {
       from: number;
       to: number;
       subject: string;
+      isDraft: boolean;
+      isRead: boolean;
     }
   ): Observable<any> {
     const url = `${this.baseUrl}/update-memo/${memoId}`;
     return this.http.patch(url, updateData);
   }
 
-  getMemosForwardedToUser(userId: number): Observable<any[]> {
-    const url = `${this.baseUrl}/get-memos-forwarded-to-user/${userId}`;
-    return this.http.get<any[]>(url);
-  }
 
   deleteMemo(memoId: number): Observable<any> {
     const url = `${this.baseUrl}/delete-memo/${memoId}`;

@@ -1,9 +1,23 @@
+.tracking {
+  height: 90%;
+  border-radius: 15px;
+  width: 99%;
+  overflow: auto;
+}
+input {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  outline: none;
+}
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Example: Blue glow */
+}
 .recent-memos-container {
   max-width: 600px;
   width: 250px;
   margin: 0 auto;
   /*padding: 20px;*/
-  background-color: #f9f9f9;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
 }
@@ -18,9 +32,12 @@ h2 {
   display: inline-block;
   width: 100%;
   padding: 10px 0;
+  background-color: rgba(0, 92, 187, 0.08);
+  border-top-left-radius: 15px;
 }
 
 .memo-list {
+
   list-style: none;
   padding: 0;
 }
@@ -38,7 +55,7 @@ h2 {
 }
 
 .memo-content:hover {
-  background-color: rgba(164, 200, 140, 0.3);
+  background-color: rgba(0, 92, 187, 0.05);
   cursor: pointer;
 
 }

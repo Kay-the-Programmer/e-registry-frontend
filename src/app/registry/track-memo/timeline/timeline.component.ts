@@ -2,11 +2,18 @@ import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MemoService } from "../../../services/memo-service/memo.service";
 import {ActivatedRoute} from "@angular/router";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {
+  faBuildingCircleArrowRight,
+  faCheckCircle,
+  faLocation,
+  faLocationArrow, faLocationDot, faMapLocationDot
+} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-timeline',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FaIconComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.css'
 })
@@ -41,4 +48,11 @@ export class TimelineComponent {
       }
     );
   }
+
+  protected readonly faBuildingCircleArrowRight = faBuildingCircleArrowRight;
+  protected readonly faCheckCircle = faCheckCircle;
+  protected readonly faLocation = faLocation;
+  protected readonly faLocationArrow = faLocationArrow;
+  protected readonly faLocationDot = faLocationDot;
+  protected readonly faMapLocationDot = faMapLocationDot;
 }

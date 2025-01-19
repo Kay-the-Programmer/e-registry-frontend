@@ -6,11 +6,12 @@ import {
   faChartSimple,
   faCircleUser, faDashboard,
   faFileLines, faFolderPlus,
-  faFolderTree,
+  faFolderTree, faHistory,
   faMapLocationDot,
   faPencil, faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import {faClock} from "@fortawesome/free-regular-svg-icons";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-registry-sidebar',
@@ -18,7 +19,8 @@ import {faClock} from "@fortawesome/free-regular-svg-icons";
   imports: [
     FaIconComponent,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    NgOptimizedImage
   ],
   templateUrl: './registry-sidebar.component.html',
   styleUrl: './registry-sidebar.component.css'
@@ -48,4 +50,5 @@ export class RegistrySidebarComponent implements OnInit{
   }
 
   protected readonly faBuilding = faBuilding;
+  protected readonly faHistory = faHistory;
 }

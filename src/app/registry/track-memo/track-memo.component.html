@@ -1,19 +1,21 @@
-
-<div class="d-flex flex-row">
-  <div class=" m-0 p-0 flex-grow-1">
-    <app-memo-tracker></app-memo-tracker>
+<mat-card class="tracking d-flex flex-row">
+  <div class=" m-0 p-0 flex-grow-1 ">
+<!--    <app-memo-tracker></app-memo-tracker>-->
+    <h2>Track memo</h2>
+    <app-timeline [events]="memoFlowData"></app-timeline>
   </div>
-<!--  <div class="recent-memos-container">-->
-<!--    <mat-toolbar>-->
-<!--      <h2 >Recent Memos</h2>-->
-<!--    </mat-toolbar>-->
-<!--    <ul class="memo-list">-->
-<!--      <li *ngFor="let memo of recentMemos" class="memo-item">-->
-<!--        <div class="memo-content">-->
-<!--          <span class="memo-title px-3">{{ memo.title }}</span>-->
-<!--        </div>-->
-<!--        <mat-divider></mat-divider>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
-</div>
+  <div class="recent-memos-container">
+    <nav class="navbar d-flex p-2">
+        <form class="p-0 flex-grow-1 m-0" role="search">
+          <input class="form-control m-0 focus-ring" type="search" placeholder="Search" aria-label="Search">
+        </form>
+    </nav>
+    <ul class="memo-list">
+      <li *ngFor="let memo of recentMemos" class="memo-item">
+        <div class="memo-content">
+          <span class="memo-title px-3">{{ memo.title }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</mat-card>

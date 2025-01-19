@@ -1,4 +1,3 @@
-
 .mat-mdc-form-field {
   font-size: 14px;
   margin-bottom: 0;
@@ -20,8 +19,9 @@ mat-row.example-element-row:hover {
 
 .mat-mdc-table {
   width: 100%;
-  max-height: 480px;
+  height: 80%;
   overflow: auto;
+  /*background-color: #c2e7ff;*/
 }
 
 button {
@@ -29,3 +29,18 @@ button {
   padding: 0 25px;
   margin: 5px;
 }
+
+mat-card.mat-card {
+  background-color: whitesmoke;
+  height: 100%;
+}
+
+/* in your component's .css file */
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+mat-form-field {
+  margin: 0;
+}
+

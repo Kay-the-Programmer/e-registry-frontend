@@ -1,32 +1,26 @@
-
-<mat-drawer-container class="example-container ">
+<mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" opened [style.width.px]="drawerSize" mode="side">
     <app-registry-sidebar></app-registry-sidebar>
   </mat-drawer>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <div>
+
+  <div class="example-sidenav-content w-100 h-100">
+    <nav class="navbar navbar-expand-lg sticky-navbar">
+      <div class="container-fluid m-0 d-flex p-0">
+        <div class="d-flex flex-grow-1">
+          <form class="d-flex flex-grow-1" role="search">
+            <input class="form-control me-2 rounded-5" type="search" placeholder="Search" aria-label="Search">
+          </form>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" matTooltip="notifications" href="#"><fa-icon [icon]="faBell">Notifications</fa-icon></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " matTooltip="sign out" aria-current="page" href="#"><fa-icon [icon]="faSignOut"></fa-icon></a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <a class="navbar-brand" routerLink="/user/dashboard/home" ><img class="m-logo" ngSrc="assets/logo/e-registry-logo.png" alt="" height="1106" width="1392"></a>
-
-      <div class="collapse navbar-collapse d-flex justify-content-between align-items-end" id="navbarSupportedContent">
-
-        <form class="d-flex flex-grow-1 mx-5" role="search">
-          <input class="form-control me-2 rounded-5" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" matTooltip="notifications" href="#"><fa-icon [icon]="faBell">Notifications</fa-icon></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " matTooltip="sign out" aria-current="page" href="#"><fa-icon [icon]="faSignOut"></fa-icon></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="example-sidenav-content ">
-    <router-outlet></router-outlet>
+    </nav>
+    <router-outlet class="w-100 h-100"></router-outlet>
   </div>
 </mat-drawer-container>

@@ -19,13 +19,14 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTable, MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
+import {MatCard} from "@angular/material/card";
 @Component({
   selector: 'app-manage-files',
   standalone: true,
   imports: [
     MatIconModule, MatButtonModule, MatDialogModule, CommonModule,
     FaIconComponent, RouterModule, MatToolbar, DeleteFileConfirmationComponent,
-    FilesListComponent, AccessControlComponent, MatTabsModule, MatFormFieldModule, MatInput, MatTableModule
+    FilesListComponent, AccessControlComponent, MatTabsModule, MatFormFieldModule, MatInput, MatTableModule, MatCard
   ],
   templateUrl: './manage-files.component.html',
   styleUrls: ['./manage-files.component.css'],

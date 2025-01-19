@@ -1,14 +1,14 @@
-<div class="manage-users-container">
+<mat-card class="manage-users-container">
 
- <mat-toolbar class="w-100 d-flex justify-content-between ps-3 pe-1 align-items-center">
-   <h3> <fa-icon class="me-2 text-success" [icon]="faUserCheck"></fa-icon> Registered users</h3>
-   <button mat-raised-button color="primary" (click)="openCreateUserDialog()">
-     <fa-icon class="me-2 " [icon]="faUserPlus"></fa-icon>
-     Register
-   </button>
- </mat-toolbar>
+   <mat-toolbar class="d-flex justify-content-between px-3 pe-1 align-items-center">
+     <h3> <fa-icon class="me-2 text-success" [icon]="faUserCheck"></fa-icon> Registered users</h3>
+     <button class="register" mat-raised-button color="primary" (click)="openCreateUserDialog()">
+       <fa-icon class="me-2 " [icon]="faUserPlus"></fa-icon>
+       Register
+     </button>
+   </mat-toolbar>
   <!-- Table with Sorting and Pagination -->
-  <mat-table [dataSource]="dataSource" matSort class=" mat-table">
+  <mat-table [dataSource]="dataSource" matSort class="mat-table">
     <!-- Column: Employee Number -->
     <ng-container matColumnDef="empNumber">
       <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Employee # </mat-header-cell>
@@ -42,7 +42,7 @@
     <!-- Column: Department -->
     <ng-container matColumnDef="userDept">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{ user.departmentId }} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{ user.department.departmentName }} </mat-cell>
     </ng-container>
 
     <!-- Action Column -->
@@ -64,6 +64,6 @@
   </mat-table>
 
   <!-- Pagination -->
-  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
-</div>
+</mat-card>

@@ -1,18 +1,15 @@
 .timeline-container {
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+  margin-top: 10px;
   padding: 0 20px;
-  background: #f9f9f9;
   border-radius: 8px;
-  /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
 }
 
 .timeline {
   position: relative;
   padding: 0;
   margin: 0;
-  border-left: dashed 1px #3f51b5;
+  border-left: dashed 1px #005cbb;
 }
 
 .timeline-item {
@@ -26,22 +23,31 @@
 }
 
 .timeline-dot {
-  width: 12px;
-  height: 12px;
-  background: #3f51b5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: #005cbb;
   border-radius: 50%;
   flex-shrink: 0;
   margin-right: 15px;
   position: relative;
-  top: 15px;
-  margin-left: -6px;
+  top: 0;
+  margin-left: -15px;
+  color: white;
+}
+
+.timeline-dot fa-icon {
+  font-size: 22px;
+  margin: 0;
 }
 
 .timeline-content {
   padding: 10px 15px;
-  background: #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 92, 187, 0.03);
   flex-grow: 1;
 }
 
@@ -66,4 +72,17 @@
   width: 2px;
   background: #ddd;
   z-index: -1;
+}
+
+.empty-timeline {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-size: 1em;
+}
+
+.empty-timeline .empty-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #ffa500; /* Matches orange in your color palette */
 }

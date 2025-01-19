@@ -1,4 +1,8 @@
-<ul class="nav flex-column gap-1 p-2">
+<ul class="nav flex-column gap-1 ">
+  <nav class="p-1 px-3 d-flex gap-2 align-items-center justify-content-start">
+    <img ngSrc="assets/logo/e-registry-logo.png" height="37" width="42">
+    <img  routerLink="/user/dashboard/home" class="pt-1" ngSrc="assets/logo/e-registry-logo-text.png" height="25" width="50">
+  </nav>
   <li class="nav-item user" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
       [routerLink]="['/registry/file-requests']">
@@ -43,9 +47,9 @@
   </li>
   <li class="nav-item analytics" routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="/registry/analytics">
-    <fa-icon [icon]="faChartSimple"></fa-icon>
-    <a class="nav-link">Analytics</a>
+      routerLink="/registry/log-viewer">
+    <fa-icon [icon]="faHistory"></fa-icon>
+    <a class="nav-link">Activity log</a>
   </li>
 </ul>
 

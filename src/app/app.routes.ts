@@ -19,6 +19,8 @@ import {UserProfileComponent} from "./registry/user-profile/user-profile.compone
 import {FileDetailsComponent} from "./registry/manage-files/file-details/file-details.component";
 import {NewMemoComponent} from "./shared/new-memo/new-memo.component";
 import {UserFilesComponent} from "./user/user-files/user-files.component";
+import {LogViewerComponent} from "./shared/log-viewer/log-viewer.component";
+import {MemoDetailsComponent} from "./registry/manage-files/memo-details/memo-details.component";
 
 export const routes: Routes = [
   {
@@ -117,6 +119,15 @@ export const routes: Routes = [
       {
         path: "memos",
         component: MemosComponent,
+
+      },
+      {
+        path: 'memo-details/:id',
+        component: MemoDetailsComponent,
+      },
+      {
+        path: "log-viewer",
+        component: LogViewerComponent,
       }
     ]
   },

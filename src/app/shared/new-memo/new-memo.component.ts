@@ -106,19 +106,14 @@ export class NewMemoComponent implements OnInit{
     if (this.memoForm.valid) {
       const formValue = this.memoForm.value;
       const memoData = {
-        body: formValue.body,  // Use body form control
+        body: formValue.body,
         fileId: formValue.file?.fileNo,
-        // Get selected file's 'fileNo'
         status: 'Pending',
         title: formValue.subject,  // Subject can be the title
         from: this.userId,
         to: formValue.recipients?.id,
         subject: formValue.subject,
       };
-
-      console.log("Memo data", memoData)
-      console.log("form data", formValue)
-
 
       this.memoService.createMemo(memoData).subscribe({
         next: (response) => {

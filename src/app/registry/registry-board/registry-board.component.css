@@ -26,13 +26,12 @@ fa-icon:hover{
 .example-container {
   width: 100%;
   height: 100%;
-  border: 1px solid lightgrey;
+  border: none;
 }
 
 .example-sidenav-content {
-  display: flex;
- /* height: 100%;*/
- /*width: 100%;*/
+  display: block;
+  background-color: #f7f8fa;
 }
 /* Base styles for the mat-drawer */
 .example-sidenav {
@@ -41,29 +40,32 @@ fa-icon:hover{
   transition: overflow 0.3s ease; /* Smooth transition for hover effect */
 }
 
-/* Show the scrollbar on hover */
-.example-sidenav:hover {
-  overflow-y: auto; /* Enables scrolling when hovered */
+mat-drawer.example-sidenav {
+  border: none;
 }
 
-/* Custom styles for the scrollbar */
-.example-sidenav::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
+.logo {
+  width: 240px;
 }
 
-.example-sidenav::-webkit-scrollbar-thumb {
-  background: #888; /* Thumb color */
-  border-radius: 0; /* Rounded corners */
+/* Make the navbar sticky */
+.sticky-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10; /* Ensure it stays above other elements */
+  background-color: #f7f8fa;
+  /*box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);*/
 }
 
-.example-sidenav::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker thumb on hover */
+/* Ensure the mat-drawer-container and its contents allow scrolling */
+.example-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.example-sidenav::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Background color of the scrollbar track */
+.example-sidenav-content {
+  overflow-y: auto;
 }
-nav {
-  border-bottom: 1px solid lightgrey;
-  background-color: rgba(215, 227, 255, 0.08);
-}
+

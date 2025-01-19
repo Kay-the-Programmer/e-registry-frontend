@@ -1,32 +1,39 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" [style.width.px]="drawerWidth"  [opened]="isDrawerOpened" mode="side">
-    <app-left-sidenav></app-left-sidenav>
-  </mat-drawer>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <div>
-      </div>
-      <a class="navbar-brand" routerLink="/user/dashboard/home" ><img class="m-logo" ngSrc="assets/logo/e-registry-logo.png" alt="" height="1106" width="1392"></a>
-
-      <div class="collapse navbar-collapse d-flex justify-content-between align-items-end" id="navbarSupportedContent">
-
-        <form class="d-flex flex-grow-1 mx-5" role="search">
-          <input class="form-control me-2 rounded-5" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" matTooltip="notifications" href="#"><fa-icon [icon]="faBell">Notifications</fa-icon></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " matTooltip="sign out" aria-current="page" href="#"><fa-icon [icon]="faSignOut"></fa-icon></a>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <div>
     </div>
-  </nav>
+    <a class="navbar-brand" routerLink="/user/dashboard/home" ><img class="m-logo" ngSrc="assets/logo/e-registry-logo.png" alt="" height="1106" width="1392"></a>
 
-  <div class="example-sidenav-content d-flex">
-    <router-outlet></router-outlet>
+    <div class="collapse navbar-collapse d-flex justify-content-between align-items-end" id="navbarSupportedContent">
+
+      <form class="d-flex flex-grow-1 ms-5 w-25" role="search">
+        <input class="form-control me-2 rounded-5 w-25" type="search" placeholder="Search" aria-label="Search">
+      </form>
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-2">
+        <li class="nav-item">
+          <a class="nav-link" matTooltip="Home" routerLinkActive="active" routerLink="/user/dashboard/home"><fa-icon [icon]="faHouse">Home</fa-icon></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" matTooltip="notifications" href="#"><fa-icon [icon]="faBell">Notifications</fa-icon></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " matTooltip="sign out" aria-current="page" href="#"><fa-icon [icon]="faSignOut"></fa-icon></a>
+        </li>
+      </ul>
+    </div>
   </div>
+</nav>
 
-</mat-drawer-container>
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav opened mode="side" [style.width.px]="drawerWidth" >
+    <app-left-sidenav></app-left-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav opened mode="side" [style.width.px]="rightDrawerSize"  position="end">
+    <app-track-memo></app-track-memo>
+  </mat-sidenav>
+
+  <router-outlet ></router-outlet>
+
+</mat-sidenav-container>

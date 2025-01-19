@@ -4,19 +4,20 @@ import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import {DrawerService} from "../user-service/user-service.service";
 import {LeftSidenavComponent} from "../left-sidenav/left-sidenav.component";
 import {HomeComponent} from "../home/home.component";
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {HeaderComponent} from "../header/header.component";
-import {faBell, faSignOut} from "@fortawesome/free-solid-svg-icons";
+import {faBell, faHouse, faSignOut} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {FormsModule} from "@angular/forms";
 import {MatTooltip} from "@angular/material/tooltip";
 import {NgOptimizedImage} from "@angular/common";
+import {TrackMemoComponent} from "../track-memo/track-memo.component";
 
 
 @Component({
   selector: 'app-dashboard-container',
   standalone: true,
-  imports: [MatButtonModule, MatSidenavModule, LeftSidenavComponent, HomeComponent, RouterOutlet, HeaderComponent, FaIconComponent, FormsModule, MatTooltip, NgOptimizedImage, RouterLink],
+  imports: [MatButtonModule, MatSidenavModule, LeftSidenavComponent, HomeComponent, RouterOutlet, HeaderComponent, FaIconComponent, FormsModule, MatTooltip, NgOptimizedImage, RouterLink, RouterLinkActive, TrackMemoComponent],
   templateUrl: './dashboard-container.component.html',
   styleUrl: './dashboard-container.component.css',
   // providers: [DrawerService],
@@ -62,4 +63,6 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit{
 
     protected readonly faSignOut = faSignOut;
     protected readonly faBell = faBell;
+  protected readonly faHouse = faHouse;
+  rightDrawerSize: number = 300;
 }

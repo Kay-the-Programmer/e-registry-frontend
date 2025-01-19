@@ -3,29 +3,25 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatDividerModule } from '@angular/material/divider';
 import {MemoTrackerComponent} from "./memo-tracker/memo-tracker.component";
+import {MatCard} from "@angular/material/card";
+import {TimelineComponent} from "./timeline/timeline.component";
 
 @Component({
   selector: 'app-track-memo',
   standalone: true,
-  imports: [MatToolbarModule, NgxChartsModule, MatDividerModule, MemoTrackerComponent],
+  imports: [MatToolbarModule, NgxChartsModule, MatDividerModule, MemoTrackerComponent, MatCard, TimelineComponent],
   templateUrl: './track-memo.component.html',
   styleUrl: './track-memo.component.css'
 })
 export class TrackMemoComponent {
-// Sample data for memo movement visualization
+  // Sample data for memo movement visualization
   memoFlowData = [
     {
-      name: 'Alice to Bob',
-      value: 15, // Number of memos sent
-    },
-    {
-      name: 'Bob to Charlie',
-      value: 10,
-    },
-    {
-      name: 'Charlie to Diana',
-      value: 5,
-    },
+      date: '12/12/2020',
+      action: 'Alice Created',
+      description: "Memo created",
+      department: 'HR',
+    }
   ];
 
   colorScheme = 'vivid';

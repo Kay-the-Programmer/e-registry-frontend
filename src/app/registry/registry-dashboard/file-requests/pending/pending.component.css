@@ -1,4 +1,8 @@
+.pending {
+  height: 100%;
 
+  overflow: auto;
+}
 h2 {
   color: #005cbb;
 }
@@ -137,8 +141,11 @@ mat-expansion-panel.mat-expansion-panel {
 }
 
 
-table {
+table.mat-mdc-table {
   width: 100%;
+  /*background-color: 1;*/
+  height: 90%;
+  overflow-y: auto;
 }
 
 tr.example-detail-row {

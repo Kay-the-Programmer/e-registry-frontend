@@ -16,3 +16,33 @@ body {
 .custom-dialog-container {
   border-radius: 25px;
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #DDD;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 92, 187, 0.2);
+}
+
+::ng-deep .mat-mdc-tab-header .mdc-tab {
+  height: 50px !important;
+}
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label,
+::ng-deep .mat-mdc-tab-link .mdc-tab__text-label {
+  color: #005cbb !important;
+}
+
+.mat-form-field-no-padding .mat-form-field-wrapper {
+  padding-bottom: 0; /* Remove padding */
+}
+
+.mat-form-field-no-padding {
+  margin: 0; /* Remove margin */
+}
+

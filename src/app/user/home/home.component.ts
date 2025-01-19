@@ -5,13 +5,13 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {ComponseMemoComponent} from "../componse-memo/componse-memo.component";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {FaIconComponent, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {
   faMagnifyingGlass,
   faCaretSquareUp,
   faUserCircle,
   faBuilding,
-  faBuildingCircleArrowRight
+  faBuildingCircleArrowRight, faPencil, faInbox, faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 import {CommonModule} from "@angular/common";
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -68,7 +68,7 @@ export class MemoTrailComponent {
     MatCard,
     MatCardContent,
     MatTabsModule,
-    MatCardModule, MatChipsModule, MatProgressBarModule, MemoTrailComponent, ComponseMemoComponent, InboxComponent
+    MatCardModule, MatChipsModule, MatProgressBarModule, MemoTrailComponent, ComponseMemoComponent, InboxComponent, FaIconComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
@@ -76,5 +76,8 @@ export class MemoTrailComponent {
 })
 export class HomeComponent {
 
+  protected readonly faPencil = faPencil;
+  protected readonly faInbox = faInbox;
+  protected readonly faPaperPlane = faPaperPlane;
 }
 

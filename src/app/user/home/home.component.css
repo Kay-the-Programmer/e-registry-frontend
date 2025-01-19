@@ -1,6 +1,40 @@
 mat-card {
   border-radius: 0;
-  padding: 0;
-  /*margin: 5px 10px 5px 10px;*/
   width: 100%;
+  box-shadow: 2px 2px 4px rgba(0, 92, 187, 0.1);
+}
+
+.card {
+  border-radius: 10px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  /* Default background and hover effect */
+  background-color: #f8f9fa;
+  &:hover {
+    background-color: rgba(0, 92, 187, 0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  &:hover .icon{
+    font-size: 25px; /* Increases size smoothly */
+
+  }
+    /* Prevent text from shifting */
+  .icon {
+    margin: 0 10px;
+    color: #005cbb;
+    transition: all ease-in-out 0.1s;
+    font-size: 20px; /* Default size */
+    width: 25px; /* Ensures consistent width */
+    height: 25px; /* Ensures consistent height */
+
+    &:hover {
+      color: #e64a19; /* Darker shade of orange */
+    }
+  }
 }

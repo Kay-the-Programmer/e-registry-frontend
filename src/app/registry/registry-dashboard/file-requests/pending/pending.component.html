@@ -1,9 +1,4 @@
-<div style="max-height: 800px; overflow: auto;">
-<!--  &lt;!&ndash; Check if dataSource is empty &ndash;&gt;-->
-<!--  <div *ngIf="dataSource.length === 0" class="no-data-message">-->
-<!--    <p>No data available.</p>-->
-<!--  </div>-->
-
+<div class="pending">
   <table mat-table class="mat-mdc-table" [dataSource]="dataSource" multiTemplateDataRows>
 
     <ng-container matColumnDef="name">

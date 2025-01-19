@@ -1,0 +1,10 @@
+button {
+  border-radius: 25px;
+  padding: 0 25px;
+}
+button:hover {
+  background-color: rgba(0, 92, 187, 0.05);
+}
+mat-form-field {
+  width: 100%;
+}

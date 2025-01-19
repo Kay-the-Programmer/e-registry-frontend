@@ -1,6 +1,6 @@
 /* General container styling */
 .container {
-  width: 1050px;
+  width: 100%;
   margin: 0 ;
   padding: 0;
   background-color: transparent;
@@ -10,7 +10,7 @@
   margin-bottom: 0;
 }
 mat-card {
-  border-radius: 0;
+  border-radius: 10px;
 }
 mat-form-field {
   flex: 1 1 calc(33% - 16px);

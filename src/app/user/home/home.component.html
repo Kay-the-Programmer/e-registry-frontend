@@ -1,15 +1,31 @@
-<!--<mat-card>-->
-<!--  <memo-trail></memo-trail>-->
-<!--</mat-card>-->
-<mat-card class="p-0 m-0">
-  <mat-card-content class="p-0 m-0">
-    <mat-tab-group>
-      <mat-tab label="Inbox">
-        <app-inbox></app-inbox>
-      </mat-tab>
-      <mat-tab label="Outbox">
-        Outbox
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card-content>
-</mat-card>
+<div>
+  <mat-card class="d-flex gap-2 flex-row p-2">
+    <mat-card class="card d-flex flex-row gap-2 justify-content-start align-items-center p-2">
+      <fa-icon [icon]="faPencil" class="icon"></fa-icon>
+      Compose
+    </mat-card>
+    <mat-card class="card d-flex flex-row gap-2 justify-content-start align-items-center p-2">
+      <fa-icon [icon]="faInbox" class="icon"></fa-icon>
+      Inbox
+    </mat-card>
+    <mat-card class="card d-flex flex-row gap-2 justify-content-start align-items-center p-2">
+      <fa-icon [icon]="faPaperPlane" class="icon"></fa-icon>
+      Sent
+    </mat-card>
+  </mat-card>
+
+
+  <mat-card class="p-0 m-0 w-100">
+    <mat-card-content class="p-0 m-0">
+      <mat-tab-group>
+        <mat-tab label="Inbox">
+          <app-inbox></app-inbox>
+        </mat-tab>
+        <mat-tab label="Outbox">
+          Outbox
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+
+</div>
